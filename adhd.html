@@ -1,0 +1,583 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ADHDAKOTA OS Labz · Operating Systems for the Self</title>
+  <meta name="description" content="Custom operating systems for neurodivergent minds, founders, and creators. Identity-first OS builds with invocable privacy rights.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f7f5f0;
+      --surface: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #555555;
+      --accent: #b87c4b;
+      --accent-glow: rgba(184, 124, 75, 0.25);
+      --border: #e0dcd5;
+      --font-display: 'Times New Roman', 'Palatino', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --radius: 0.75rem;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --lab-badge: #3d5a46;
+    }
+
+    [data-theme="void"] {
+      --bg: #0b0c10;
+      --surface: #15171e;
+      --text: #e0e0e0;
+      --text-secondary: #9a9b9e;
+      --accent: #6c5ce7;
+      --accent-glow: rgba(108, 92, 231, 0.3);
+      --border: #23262f;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+      --lab-badge: #a29bfe;
+    }
+
+    [data-theme="forge"] {
+      --bg: #1c1815;
+      --surface: #26211c;
+      --text: #e6d9cc;
+      --text-secondary: #a39484;
+      --accent: #e07b39;
+      --accent-glow: rgba(224, 123, 57, 0.3);
+      --border: #3d322a;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+      --lab-badge: #e07b39;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      transition: background var(--transition), color var(--transition);
+      -webkit-font-smoothing: antialiased;
+      cursor: default;
+    }
+
+    .custom-cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease, background 0.2s ease;
+      mix-blend-mode: difference;
+      transform: translate(-50%, -50%);
+    }
+    .custom-cursor.hover {
+      transform: translate(-50%, -50%) scale(1.8);
+      background: var(--accent-glow);
+      border-color: transparent;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span {
+      color: var(--accent);
+    }
+    .nav-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .theme-toggle-group {
+      display: flex;
+      gap: 0.5rem;
+      background: var(--surface);
+      border-radius: 2rem;
+      padding: 0.25rem;
+      border: 1px solid var(--border);
+    }
+    .theme-btn {
+      background: none;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all var(--transition);
+      font-family: var(--font-body);
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+    .theme-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+    .privacy-trigger {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .privacy-trigger:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 3rem 0 4rem;
+      text-align: center;
+    }
+    .lab-badge {
+      display: inline-block;
+      background: var(--lab-badge);
+      color: #fff;
+      padding: 0.3rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 span {
+      color: var(--accent);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.9rem 2.2rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all var(--transition);
+      box-shadow: 0 4px 14px var(--accent-glow);
+      font-family: var(--font-body);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--accent-glow);
+    }
+
+    .agent-preview {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin: 2rem auto 0;
+      max-width: 650px;
+      text-align: left;
+      box-shadow: var(--shadow);
+    }
+    .agent-preview label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+    }
+    .agent-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      font-family: var(--font-body);
+      margin-bottom: 1rem;
+      transition: all var(--transition);
+    }
+    .agent-response {
+      font-style: italic;
+      color: var(--accent);
+      min-height: 2rem;
+      font-weight: 500;
+    }
+
+    .pricing-section {
+      padding: 4rem 0;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .pricing-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition);
+      box-shadow: var(--shadow);
+    }
+    .pricing-card.featured {
+      border-color: var(--accent);
+      box-shadow: 0 8px 30px var(--accent-glow);
+    }
+    .card-tier {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .card-name {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .card-price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    .card-price span {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+    .card-features {
+      list-style: none;
+      margin-bottom: 2rem;
+      flex-grow: 1;
+    }
+    .card-features li {
+      padding: 0.35rem 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+    .card-features li::before {
+      content: "→ ";
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .card-btn {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 0.7rem 1rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all var(--transition);
+      text-decoration: none;
+      display: block;
+    }
+    .card-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+    .card-btn.primary-fill {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .vip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .vip-card {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: 0 8px 30px var(--accent-glow);
+    }
+
+    .addon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .addon-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .addon-name {
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .addon-price {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .privacy-panel {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 100%;
+      max-width: 400px;
+      height: 100vh;
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      padding: 2rem;
+      z-index: 1000;
+      transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+      box-shadow: -8px 0 30px rgba(0,0,0,0.15);
+    }
+    .privacy-panel.open {
+      right: 0;
+    }
+    .privacy-panel h3 {
+      font-family: var(--font-display);
+      margin-bottom: 1.5rem;
+    }
+    .privacy-toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .privacy-toggle-row span {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--border);
+      border-radius: 24px;
+      transition: var(--transition);
+    }
+    .slider:before {
+      content: "";
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+    input:checked + .slider {
+      background: var(--accent);
+    }
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+    .privacy-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text);
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 999;
+      display: none;
+    }
+    .overlay.show {
+      display: block;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 3rem;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .privacy-panel {
+        max-width: 100%;
+        right: -100%;
+      }
+    }
+  </style>
+</head>
+<body data-theme="lab">
+
+  <div class="custom-cursor" id="cursor"></div>
+  <div class="overlay" id="overlay"></div>
+
+  <div class="privacy-panel" id="privacyPanel">
+    <button class="privacy-close" id="privacyClose">&times;</button>
+    <h3>🔒 Privacy Invocation Panel</h3>
+    <p style="color:var(--text-secondary); margin-bottom:1.5rem; font-size:0.9rem;">Toggle any right. Invocations are logged, timestamped, and legally binding immediately.</p>
+    <div class="privacy-toggle-row"><span>Right to data deletion</span><label class="toggle-switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+    <div class="privacy-toggle-row"><span>Right to anonymized usage</span><label class="toggle-switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+    <div class="privacy-toggle-row"><span>Right to export data</span><label class="toggle-switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+    <div class="privacy-toggle-row"><span>No data sold / shared</span><label class="toggle-switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+    <div class="privacy-toggle-row"><span>Identity obfuscation mode</span><label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label></div>
+    <div class="privacy-toggle-row"><span>Zero-retention session</span><label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label></div>
+    <div class="privacy-toggle-row"><span>Client-held encryption keys</span><label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label></div>
+    <p style="font-size:0.7rem; color:var(--text-secondary); margin-top:2rem;">ADHDAKOTA OS Labz · Privacy Policy v1.0 · Invocable rights are irreversible once set.</p>
+  </div>
+
+  <div class="container">
+    <header>
+      <a href="#" class="logo">ADHDAKOTA <span>OS Labz</span></a>
+      <div class="nav-actions">
+        <div class="theme-toggle-group" id="themeToggleGroup">
+          <button class="theme-btn active" data-theme="lab">Lab</button>
+          <button class="theme-btn" data-theme="void">Void</button>
+          <button class="theme-btn" data-theme="forge">Forge</button>
+        </div>
+        <button class="privacy-trigger" id="privacyTrigger">🔒 Privacy Panel</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="lab-badge">ADHDAKOTA OS Labz</div>
+      <h1>Operating Systems<br><span>for the Self</span></h1>
+      <p>Custom-built identity engines, workflow modules, and agent personalities for neurodivergent minds, founders, and creators. Your mind. Your OS. Your rules.</p>
+      <a href="#pricing" class="btn-primary">Begin Onboarding →</a>
+      <div class="agent-preview">
+        <label>🧬 Test an agent personality:</label>
+        <input type="text" class="agent-input" id="agentInput" placeholder="Type something — a thought, a task, a feeling...">
+        <div class="agent-response" id="agentResponse">Awaiting input...</div>
+      </div>
+    </section>
+
+    <section class="pricing-section" id="pricing">
+      <h2 class="section-title">Tiered OS Distribution</h2>
+      <p class="section-sub">From starter to fully custom. Privacy invocable at every level.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card"><div class="card-tier">Tier 1</div><div class="card-name">Starter OS</div><div class="card-price">$49<span> one-time</span></div><ul class="card-features"><li>Base OS template</li><li>3 workflow modules</li><li>1 identity theme</li><li>Basic automation pack</li><li>30-day onboarding</li><li>Privacy baseline</li></ul><a href="#" class="card-btn">Get Starter</a></div>
+        <div class="pricing-card"><div class="card-tier">Tier 2</div><div class="card-name">Life OS</div><div class="card-price">$129<span> one-time</span></div><ul class="card-features"><li>Full identity engine</li><li>7 workflow modules</li><li>3 agent personalities</li><li>Custom UI theme</li><li>Identity obfuscation</li><li>Community access</li></ul><a href="#" class="card-btn">Get Life OS</a></div>
+        <div class="pricing-card featured"><div class="card-tier">Tier 3</div><div class="card-name">Professional OS</div><div class="card-price">$299<span> one-time</span></div><ul class="card-features"><li>12 workflow modules</li><li>5 agent personalities</li><li>Industry automation pack</li><li>Security module</li><li>Priority support</li><li>Zero-retention mode</li></ul><a href="#" class="card-btn primary-fill">Get Pro OS</a></div>
+        <div class="pricing-card"><div class="card-tier">Tier 4</div><div class="card-name">Custom OS Build</div><div class="card-price">$899+<span> one-time</span></div><ul class="card-features"><li>Fully custom OS</li><li>Identity mapping session</li><li>Custom agent personality</li><li>Custom automation engine</li><li>Dedicated support</li><li>Client-held keys</li></ul><a href="#" class="card-btn">Inquire</a></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">👑 VIP Early‑Investor Tiers</h2>
+      <p class="section-sub">Stewardship tiers that fund the commons. Permanent place in the mythos.</p>
+      <div class="vip-grid">
+        <div class="vip-card"><div class="card-tier">Ascendant</div><div class="card-name">Ascendant Investor</div><div class="card-price">$1,200</div><ul class="card-features"><li>Custom OS Build</li><li>Lifetime updates</li><li>1 custom module/year</li><li>Early access</li><li>Named investor listing</li></ul><a href="#" class="card-btn">Become Ascendant</a></div>
+        <div class="vip-card"><div class="card-tier">Architect</div><div class="card-name">Architect Tier</div><div class="card-price">$4,500</div><ul class="card-features"><li>All Ascendant + 3 modules/yr</li><li>Co-design privileges</li><li>Architect Council access</li><li>Revenue share (5%, 36mo)</li><li>Data trust designation</li></ul><a href="#" class="card-btn">Become Architect</a></div>
+        <div class="vip-card"><div class="card-tier">Pantheon</div><div class="card-name">Pantheon Tier</div><div class="card-price">$8,500</div><ul class="card-features"><li>All Architect + co-ownership</li><li>Co-design a realm</li><li>Custom agent from your traits</li><li>Lifetime support</li><li>Full data sovereignty</li></ul><a href="#" class="card-btn">Enter Pantheon</a></div>
+      </div>
+    </section>
+
+    <section style="padding: 4rem 0;">
+      <h2 class="section-title">🧩 Add‑On Marketplace</h2>
+      <div class="addon-grid">
+        <div class="addon-item"><div class="addon-name">Workflow Module</div><div class="addon-price">$19</div></div>
+        <div class="addon-item"><div class="addon-name">Agent Personality</div><div class="addon-price">$29</div></div>
+        <div class="addon-item"><div class="addon-name">Identity Theme</div><div class="addon-price">$39</div></div>
+        <div class="addon-item"><div class="addon-name">Security Module</div><div class="addon-price">$49</div></div>
+        <div class="addon-item"><div class="addon-name">Automation Pack</div><div class="addon-price">$59</div></div>
+        <div class="addon-item"><div class="addon-name">Custom UI Theme</div><div class="addon-price">$79</div></div>
+        <div class="addon-item"><div class="addon-name">Identity Remap</div><div class="addon-price">$149</div></div>
+        <div class="addon-item"><div class="addon-name">Client‑Held Keys</div><div class="addon-price">$99</div></div>
+      </div>
+    </section>
+
+    <footer>
+      <p>ADHDAKOTA <span style="color:var(--accent);">OS Labz</span> · Operating Systems for the Self</p>
+      <p>Privacy rights are invocable, irrevocable, and human-readable. <a href="#" id="footerPrivacyTrigger">Open Privacy Panel</a></p>
+      <p style="margin-top:0.5rem;">© 2026 ADHDAKOTA OS Labz · Built for neurodivergent minds</p>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      const cursor = document.getElementById('cursor');
+      document.addEventListener('
