@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.className="js";</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ADHDAKOTA OS Labz — Operating systems for the self</title>
+<meta name="description" content="Custom workflow systems, automation modules, and AI agent configs for neurodivergent minds, founders, and creators. Fixed scope, fixed price, defined delivery.">
+<link rel="canonical" href="https://adhdakota.pro/">
+<meta name="theme-color" content="#05070A">
+<meta name="robots" content="index,follow">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://adhdakota.pro/">
+<meta property="og:site_name" content="ADHDAKOTA OS Labz">
+<meta property="og:title" content="ADHDAKOTA OS Labz — Operating systems for the self">
+<meta property="og:description" content="Workflow systems, automation modules, and agent configs. Fixed scope, fixed price, defined delivery.">
+<meta property="og:image" content="https://adhdakota.pro/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ADHDAKOTA OS Labz">
+<meta name="twitter:description" content="Operating systems for the self. Fixed scope, fixed price, defined delivery.">
+<meta name="twitter:image" content="https://adhdakota.pro/og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"ProfessionalService",
+  "name":"ADHDAKOTA OS Labz","url":"https://adhdakota.pro/",
+  "description":"Custom workflow systems, automation modules, and AI agent configurations.",
+  "areaServed":"Remote",
+  "founder":{"@type":"Person","name":"Dakota Moses","alternateName":"ADHDAKOTA"},
+  "makesOffer":[
+    {"@type":"Offer","name":"Starter OS","price":"149","priceCurrency":"USD"},
+    {"@type":"Offer","name":"Life OS","price":"449","priceCurrency":"USD"},
+    {"@type":"Offer","name":"Professional OS","price":"1200","priceCurrency":"USD"}
+  ]
+}
+</script>
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   PALETTE — the only place colors are defined. Paste your nine
+   hex values here and the entire page changes. Nothing below
+   hardcodes a color; every rule reads these variables.
+   ═══════════════════════════════════════════════════════════ */
+:root{
+  --void:#05070A;        /* page ground                    */
+  --steel-900:#0A0E14;   /* recessed panels                */
+  --steel-800:#111823;   /* raised panels, cards           */
+  --steel-700:#18212E;   /* controls                       */
+  --line:#26313E;        /* every border and divider       */
+  --ember:#FF7A1A;       /* primary accent, lit cable      */
+  --ember-dim:#A84C0E;   /* accent shadow, feature glow    */
+  --signal:#2FD8EE;      /* secondary accent, second cable */
+  --text:#C9D4E0;        /* body copy                      */
+  --mute:#7C8A9C;        /* labels, secondary copy         */
+  /* translucent tints — plain rgba so old browsers keep them */
+  --tint-ember:rgba(255,122,26,.12);
+  --tint-ember2:rgba(255,122,26,.42);
+  --tint-signal:rgba(47,216,238,.38);
+  --tint-line:rgba(38,49,62,.6);
+  --tint-light:rgba(216,222,233,.09);
+  --tint-dark:rgba(0,0,0,.62);
+  --display:"Cinzel",Georgia,serif;
+  --body:"Barlow",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --pad:clamp(20px,5vw,56px);
+  --max:1120px;
+}
+*{box-sizing:border-box}
+html,body{background:var(--void)}
+body,main,header,section,footer{opacity:1!important;visibility:visible!important}
+#rig{max-height:100vh}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--void);color:var(--text);
+  font-family:var(--body);font-size:16.5px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:.01em;line-height:1.08;margin:0}
+p{margin:0 0 1em}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad);position:relative;z-index:2}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ember);margin:0 0 14px}
+.skip{position:absolute;left:-999px;top:0;background:var(--ember);color:#0B0602;padding:10px 16px;z-index:99;font-family:var(--mono)}
+.skip:focus{left:8px;top:8px}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+
+/* ── cable rig ──────────────────────────────────────────── */
+#rig{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:1}
+#rig svg{position:absolute;inset:0;width:100%;height:100%}
+@keyframes sway{0%,100%{transform:translateX(-5px)}50%{transform:translateX(5px)}}
+.bundle{animation:sway 14s ease-in-out infinite;transform-origin:top center;will-change:transform}
+@media (prefers-reduced-motion:reduce){.bundle{animation:none}}
+
+/* ── header ─────────────────────────────────────────────── */
+.top{position:sticky;top:0;z-index:40;background:rgba(5,7,10,.86);backdrop-filter:blur(9px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;height:62px}
+.brand{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.13em;text-decoration:none;white-space:nowrap;text-transform:uppercase}
+.brand b{color:var(--ember);font-weight:800}
+.brand i{font-style:normal;color:var(--mute);font-family:var(--mono);font-size:11px;letter-spacing:.18em}
+.nav{display:flex;gap:24px;margin-left:auto;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
+.nav a{color:var(--mute);text-decoration:none}
+.nav a:hover{color:var(--signal)}
+.prefs-btn{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;background:none;border:1px solid var(--line);color:var(--mute);padding:7px 11px;cursor:pointer;border-radius:2px}
+.prefs-btn:hover{border-color:var(--ember);color:var(--ember)}
+@media(max-width:860px){.nav{display:none}}
+
+/* ── hero ───────────────────────────────────────────────── */
+.hero{padding:clamp(52px,8vw,104px) 0 clamp(44px,6vw,76px);position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(28px,4vw,52px);align-items:start}
+@media(max-width:920px){.hero .wrap{grid-template-columns:1fr}}
+h1{font-size:clamp(38px,6.2vw,66px);text-transform:uppercase}
+h1 span{display:block;color:var(--ember);text-shadow:0 0 26px rgba(255,122,26,.35)}
+.lede{font-size:clamp(16px,1.9vw,19.5px);color:#AEBACA;max-width:48ch;margin-top:22px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-block;font-family:var(--mono);font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;padding:13px 20px;border-radius:2px;text-decoration:none;cursor:pointer;border:1px solid var(--ember);background:var(--ember);color:#0B0602;font-weight:600}
+.btn:hover{background:#FF8F3D;border-color:#FF8F3D}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--text)}
+.btn-ghost:hover{background:transparent;border-color:var(--signal);color:var(--signal)}
+.trust{font-family:var(--mono);font-size:11.5px;color:var(--mute);margin-top:20px;letter-spacing:.06em}
+
+/* ── console ────────────────────────────────────────────── */
+.console{background:linear-gradient(180deg,var(--steel-800),var(--steel-900));border:1px solid var(--line);border-radius:3px;overflow:hidden;box-shadow:inset 0 1px 0 var(--tint-light),0 24px 60px var(--tint-dark)}
+.console-bar{display:flex;align-items:center;gap:9px;padding:10px 13px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.14em;text-transform:uppercase}
+.lamp{width:8px;height:8px;border-radius:50%;background:var(--signal);box-shadow:0 0 10px var(--signal)}
+.lamp.warn{background:var(--ember);box-shadow:0 0 10px var(--ember)}
+.console-body{padding:15px;font-family:var(--mono);font-size:12.5px;line-height:1.9}
+.line{display:flex;gap:12px;opacity:0;transform:translateY(3px);animation:fin .3s ease forwards}
+.line .k{color:var(--mute);min-width:11ch}
+.line .v.ok{color:var(--signal)}
+.line .v.warn{color:var(--ember)}
+@keyframes fin{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.line{animation:none;opacity:1;transform:none}}
+.agent{border-top:1px solid var(--line);padding:15px}
+.agent label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+
+/* ── sections ───────────────────────────────────────────── */
+section{padding:clamp(54px,7vw,92px) 0;border-top:1px solid var(--line);position:relative}
+.s-head{max-width:62ch;margin-bottom:clamp(28px,4vw,44px)}
+.s-head h2{font-size:clamp(25px,3.5vw,38px);text-transform:uppercase}
+.s-head p{margin-top:15px;color:var(--mute)}
+
+.defs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:820px){.defs{grid-template-columns:1fr}}
+.def{background:var(--steel-900);padding:22px}
+.def dt{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);margin-bottom:9px}
+.def dd{margin:0;font-size:14.5px;color:#A6B3C4}
+
+.builds{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:14px}
+.build{background:var(--steel-800);border:1px solid var(--line);border-radius:3px;padding:20px;transition:border-color .2s,box-shadow .2s}
+.build:hover{border-color:var(--ember-dim);box-shadow:0 0 26px rgba(255,122,26,.08)}
+.build h3{font-size:17px;letter-spacing:.06em;text-transform:uppercase}
+.build-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:3px 7px;border:1px solid var(--line);border-radius:2px;color:var(--mute)}
+.tag.live{color:var(--signal);border-color:rgba(47,216,238,.35)}
+.tag.proto{color:var(--ember);border-color:rgba(255,122,26,.35)}
+.build p{font-size:14px;color:var(--mute);margin:13px 0 0}
+
+/* ── pricing: faceplates ────────────────────────────────── */
+.sheets{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
+@media(max-width:980px){.sheets{grid-template-columns:1fr}}
+.sheet{background:linear-gradient(180deg,var(--steel-800),var(--steel-900));border:1px solid var(--line);border-radius:3px;display:flex;flex-direction:column;overflow:hidden}
+.sheet-head{padding:20px;border-bottom:1px solid var(--line)}
+.sheet .pn{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin:0}
+.sheet h3{font-size:22px;margin:8px 0 0;text-transform:uppercase;letter-spacing:.05em}
+.sheet .price{font-family:var(--display);font-size:34px;font-weight:800;margin:16px 0 0;color:#fff}
+.sheet .price small{font-family:var(--mono);font-size:10.5px;font-weight:400;letter-spacing:.16em;color:var(--mute);display:block;margin-top:6px;text-transform:uppercase}
+.spec{margin:0;padding:0;font-size:14px}
+.spec div{display:flex;gap:12px;padding:11px 20px;border-bottom:1px solid rgba(38,49,62,.6)}
+.spec dt{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);min-width:9ch;padding-top:3px}
+.spec dd{margin:0;color:#B5C1D0}
+.excl{font-size:12.5px;color:var(--mute);padding:12px 20px 0;margin:0}
+.sheet-foot{padding:18px 20px;margin-top:auto}
+.sheet .btn{width:100%;text-align:center;background:transparent;border-color:var(--line);color:var(--text)}
+.sheet .btn:hover{border-color:var(--signal);color:var(--signal);background:transparent}
+.sheet.feature{border-color:var(--ember-dim);box-shadow:0 0 44px rgba(255,122,26,.10)}
+.sheet.feature .btn{background:var(--ember);border-color:var(--ember);color:#0B0602}
+.sheet.feature .btn:hover{background:#FF8F3D;border-color:#FF8F3D;color:#0B0602}
+.custom{margin-top:16px;background:var(--steel-800);border:1px solid var(--line);border-radius:3px;padding:20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.custom p{margin:0;flex:1;min-width:240px;font-size:14.5px}
+
+.steps{counter-reset:s;display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.step{background:var(--steel-900);padding:20px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--mono);font-size:12px;color:var(--ember);letter-spacing:.14em}
+.step h3{font-size:16px;text-transform:uppercase;letter-spacing:.06em}
+.step p{margin:7px 0 0;font-size:14px;color:var(--mute)}
+
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;padding:16px 0;font-family:var(--body);font-weight:600;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--mono);color:var(--ember)}
+details[open] summary::after{content:"−"}
+details p{font-size:14.5px;color:var(--mute);padding-bottom:10px;max-width:70ch}
+
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:640px}
+@media(max-width:640px){.form{grid-template-columns:1fr}}
+.form .full{grid-column:1/-1}
+.form input,.form select,.form textarea{width:100%;background:var(--steel-800);border:1px solid var(--line);color:var(--text);font-family:var(--body);font-size:15px;padding:12px;border-radius:2px}
+.form textarea{min-height:120px;resize:vertical}
+.form-note{font-family:var(--mono);font-size:12px;color:var(--mute);margin-top:14px}
+
+footer{border-top:1px solid var(--line);padding:32px 0 52px;font-family:var(--mono);font-size:11.5px;color:var(--mute);letter-spacing:.06em;position:relative}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 26px;align-items:center}
+footer a{color:var(--mute);text-decoration:none}
+footer a:hover{color:var(--ember)}
+footer .v{margin-left:auto;letter-spacing:.18em}
+
+dialog{border:1px solid var(--line);background:var(--steel-800);color:var(--text);border-radius:3px;max-width:520px;width:calc(100% - 32px);padding:0}
+dialog::backdrop{background:rgba(3,5,8,.78)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{font-size:16px;text-transform:uppercase;letter-spacing:.06em}
+.dlg-body{padding:20px}
+.dlg-body p{font-size:14px;color:var(--mute)}
+.toggle{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.toggle:last-of-type{border-bottom:none}
+.x{background:none;border:none;color:var(--mute);font-size:22px;line-height:1;cursor:pointer}
+.x:hover{color:var(--ember)}
+
+/* ── depth: blueprint grid, corner brackets, inset light ───── */
+.grid-bg{position:relative}
+.grid-bg::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:58px 58px;opacity:.12}
+.brk{position:relative}
+.brk::before,.brk::after{content:"";position:absolute;width:13px;height:13px;
+  border:1px solid var(--ember);opacity:.55;pointer-events:none}
+.brk::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.brk::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.lit{box-shadow:inset 0 1px 0 var(--tint-light),
+                0 18px 44px var(--tint-dark)}
+
+/* ── tab rail ───────────────────────────────────────────────── */
+.tabs{display:flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:3px;
+  background:var(--steel-900);overflow:hidden;margin-bottom:16px}
+.tab{flex:1 1 130px;font-family:var(--mono);font-size:11.5px;letter-spacing:.15em;
+  text-transform:uppercase;background:transparent;border:0;border-right:1px solid var(--line);
+  color:var(--mute);padding:15px 10px;cursor:pointer;position:relative;transition:color .18s,background .18s}
+.tab:last-child{border-right:0}
+.tab:hover{color:var(--signal)}
+.tab span{display:block;font-size:9.5px;letter-spacing:.1em;color:var(--mute);margin-top:4px;opacity:.75}
+.tab[aria-selected="true"]{color:var(--ember);
+  background:linear-gradient(180deg,var(--tint-ember),transparent)}
+.tab[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
+  background:var(--ember);box-shadow:0 0 14px var(--ember)}
+.tabpanel[hidden]{display:none}
+.demo{display:grid;grid-template-columns:1.35fr .65fr;gap:16px;align-items:start}
+@media(max-width:900px){.demo{grid-template-columns:1fr}}
+.pane{border:1px solid var(--line);border-radius:3px;background:var(--steel-900)}
+.pane h3{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--mute);padding:12px 14px;border-bottom:1px solid var(--line);margin:0}
+.pane .in{padding:14px}
+.pane textarea{width:100%;min-height:110px;resize:vertical;background:var(--void);color:var(--text);
+  border:1px solid var(--line);border-radius:2px;padding:11px;font-family:var(--mono);font-size:12.5px}
+.pane .row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.pane .row .btn{padding:10px 14px}
+.mini{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--mute);
+  background:transparent;border:1px solid var(--line);border-radius:2px;padding:6px 9px;cursor:pointer;text-transform:none}
+.mini:hover{border-color:var(--signal);color:var(--signal)}
+.axes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media(max-width:620px){.axes{grid-template-columns:1fr}}
+.axhd{background:var(--steel-900);padding:13px}
+.axhd h4{margin:0 0 10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ember);font-weight:600}
+.axhd h4 i{font-style:normal;color:var(--mute);letter-spacing:.06em;float:right}
+.ax{display:grid;grid-template-columns:4ch 1fr 4.4ch;gap:8px;align-items:center;
+  font-family:var(--mono);font-size:11px;margin-bottom:6px;color:var(--mute)}
+.track{height:5px;border:1px solid var(--line);border-radius:2px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--signal);transition:width .45s ease}
+.ax.neg .fill{background:var(--ember)}
+.abst{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.vbig{font-family:var(--mono);font-size:29px;line-height:1;color:var(--signal)}
+.vbig.halt{color:var(--ember)}
+.vband{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+  margin-top:7px;color:var(--mute)}
+.rail{position:relative;height:22px;margin:14px 0 6px;border:1px solid var(--line);border-radius:2px}
+.zone{position:absolute;top:0;bottom:0;opacity:.16}
+.zone.z1{background:var(--ember)} .zone.z2{background:var(--mute)} .zone.z3{background:var(--signal)}
+.needle{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--signal);
+  box-shadow:0 0 10px var(--signal);transition:left .5s cubic-bezier(.2,.8,.2,1)}
+.scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9.5px;color:var(--mute)}
+.formula{font-family:var(--mono);font-size:11.5px;color:var(--mute);margin-top:12px;line-height:1.8}
+.formula b{color:var(--text);font-weight:400}
+.dl{display:grid;grid-template-columns:14ch 1fr;gap:5px 12px;margin:0;font-family:var(--mono);font-size:11.5px}
+.dl dt{color:var(--mute);letter-spacing:.08em}
+.dl dd{margin:0}
+.hot{color:var(--ember)}
+.find{font-family:var(--mono);font-size:11.5px;border-top:1px solid var(--line)}
+.find div{display:grid;grid-template-columns:5ch 1fr auto;gap:10px;padding:9px 14px;
+  border-bottom:1px solid var(--tint-line);align-items:baseline}
+.find span:first-child{color:var(--mute)}
+.sev{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;padding:2px 6px;
+  border:1px solid var(--line);border-radius:2px;color:var(--mute)}
+.sev.crit{color:var(--ember);border-color:var(--tint-ember2)}
+.sev.warn{color:var(--signal);border-color:var(--tint-signal)}
+.checks{padding:6px 14px 14px}
+.check{display:flex;align-items:center;gap:11px;padding:10px 0;
+  border-bottom:1px solid var(--tint-line);font-size:14px;cursor:pointer}
+.check:last-child{border-bottom:0}
+.box{width:15px;height:15px;flex:0 0 15px;border:1px solid var(--line);border-radius:2px;position:relative}
+.check[aria-checked="true"] .box{border-color:var(--ember);background:var(--ember)}
+.check[aria-checked="true"] .box::after{content:"";position:absolute;inset:3px;
+  border:1.5px solid var(--void);border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
+.check small{display:block;color:var(--mute);font-size:11.5px;font-family:var(--mono)}
+.gauge{font-family:var(--mono);text-align:center;padding:18px 14px}
+.gauge b{display:block;font-size:44px;line-height:1;color:var(--signal)}
+.gauge b.low{color:var(--ember)}
+.gauge em{font-style:normal;display:block;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute);margin-top:9px}
+
+/* ── the bench ─────────────────────────────────────────────── */
+.manifest{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
+  border:1px solid var(--line);font-family:var(--mono);font-size:11.5px}
+.manifest div{background:var(--steel-900);padding:9px 11px;display:flex;justify-content:space-between;gap:8px}
+.manifest span{color:var(--mute);letter-spacing:.1em;text-transform:uppercase;font-size:10px}
+.manifest b{font-weight:500;color:var(--signal)}
+.manifest b.set{color:var(--ember)}
+
+.bench{display:grid;grid-template-columns:1.35fr .65fr;gap:16px;align-items:start}
+@media(max-width:900px){.bench{grid-template-columns:1fr}}
+.rack{display:grid;gap:12px}
+.dom{border:1px solid var(--line);border-radius:3px;background:var(--steel-900)}
+.dom h3{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mute);padding:12px 14px;border-bottom:1px solid var(--line);margin:0}
+.dom h3 em{font-style:normal;color:var(--ember);float:right}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:14px}
+.chip{font-family:var(--mono);font-size:12px;text-align:left;background:transparent;color:var(--text);
+  border:1px solid var(--line);border-radius:2px;padding:9px 12px;cursor:pointer;line-height:1.35;
+  max-width:100%;transition:border-color .18s,color .18s,box-shadow .18s}
+.chip:hover{border-color:var(--signal);color:var(--signal)}
+.chip[aria-pressed="true"]{border-color:var(--ember);color:var(--ember);
+  box-shadow:inset 0 0 0 1px var(--ember-dim),0 0 18px rgba(255,122,26,.12)}
+.chip[aria-pressed="true"]::before{content:"▪ ";color:var(--ember)}
+.chip small{display:block;color:var(--mute);font-size:10.5px;letter-spacing:.04em;margin-top:3px}
+.chip[aria-pressed="true"] small{color:var(--ember-dim)}
+
+.readout{border:1px solid var(--line);border-radius:3px;background:linear-gradient(180deg,var(--steel-800),var(--steel-900));
+  position:sticky;top:78px}
+@media(max-width:900px){
+  .readout{position:sticky;bottom:0;top:auto;z-index:6;background:var(--steel-900);
+    box-shadow:0 -14px 30px rgba(0,0,0,.55)}
+  .readout .ro-body{min-height:0;max-height:34vh}
+  .bench{grid-template-areas:"rack" "read"}
+  .rack{grid-area:rack} .readout{grid-area:read}
+}
+.ro-bar{display:flex;align-items:center;gap:9px;padding:10px 13px;border-bottom:1px solid var(--line);
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.ro-body{margin:0;padding:14px;font-family:var(--mono);font-size:11.5px;line-height:1.75;
+  color:var(--text);white-space:pre-wrap;min-height:190px;max-height:340px;overflow:auto}
+.ro-body .k{color:var(--mute)}
+.ro-body .a{color:var(--ember)}
+.ro-body .s{color:var(--signal)}
+.ro-foot{padding:14px;border-top:1px solid var(--line);display:grid;gap:8px}
+.ro-foot .btn{width:100%;text-align:center}
+.sheet.match{border-color:var(--ember);box-shadow:0 0 44px rgba(255,122,26,.14)}
+
+.stamp{border-top:1px solid var(--line);padding:30px 0 26px;text-align:center;position:relative;z-index:2}
+.stamp span{display:inline-block;font-family:var(--display);font-weight:800;color:var(--ember);
+  font-size:clamp(30px,7.6vw,74px);letter-spacing:.32em;text-indent:.32em;
+  text-shadow:0 0 34px rgba(255,122,26,.4)}
+.js .reveal{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+.reveal.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="rig" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/"><b>ADHDAKOTA</b> <i>OS LABZ</i></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#lab">Lab</a>
+      <a href="#builds">Builds</a>
+      <a href="#pricing">Distribution</a>
+      <a href="#process">Process</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="prefs-btn" id="prefsOpen" style="margin-left:auto">Data settings</button>
+  </div>
+</header>
+
+<main id="main">
+
+<div class="hero grid-bg">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">ADHDAKOTA // Independent systems engineering</p>
+      <h1>Operating systems<span>for the self</span></h1>
+      <p class="lede">Identity engines, workflow modules, and agent personalities — built for neurodivergent minds, founders, and creators who need a system that runs the way they do. Fixed scope, fixed price, written spec before any money moves.</p>
+      <div class="cta-row">
+        <a class="btn" href="#lab">Enter the lab</a>
+        <a class="btn btn-ghost" href="#builds">What's shipped</a>
+      </div>
+      <p class="trust">Written spec first · Source delivered to your repo · 14-day fix window</p>
+    </div>
+
+    <div class="console" aria-label="System status">
+      <div class="console-bar"><span class="lamp" id="lamp"></span> <span>os-labz · session</span></div>
+      <div class="console-body" id="boot"></div>
+      <div class="agent">
+        <label>Current build</label>
+        <div class="manifest" id="manifest">
+          <div><span>modules</span><b id="mfMod">0</b></div>
+          <div><span>agents</span><b id="mfAgt">0</b></div>
+          <div><span>surface</span><b id="mfSur">—</b></div>
+          <div><span>runtime</span><b id="mfRun">—</b></div>
+          <div><span>tier</span><b id="mfTier">unconfigured</b></div>
+          <div><span>build time</span><b id="mfTime">—</b></div>
+        </div>
+        <a class="btn btn-ghost" href="#lab" style="width:100%;text-align:center;margin-top:13px">Open the bench</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="lab" class="grid-bg">
+  <div class="wrap">
+    <div class="s-head">
+      <p class="eyebrow">The lab</p>
+      <h2>Run the systems</h2>
+      <p>Four live engines. Configure a build, arbitrate an action, scan a config for leaked credentials, score a project for release. Every one runs on this page — no accounts, no uploads, no calls out.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Demos">
+      <button class="tab" role="tab" id="t-bench" aria-controls="p-bench" aria-selected="true">Bench<span>OS builder</span></button>
+      <button class="tab" role="tab" id="t-amos"  aria-controls="p-amos"  aria-selected="false">A.M.O.S.<span>arbitration</span></button>
+      <button class="tab" role="tab" id="t-nuke"  aria-controls="p-nuke"  aria-selected="false">nuke_scanner<span>secret sweep</span></button>
+      <button class="tab" role="tab" id="t-nomx"  aria-controls="p-nomx"  aria-selected="false">NOMX<span>release gate</span></button>
+      <button class="tab" role="tab" id="t-agent" aria-controls="p-agent" aria-selected="false">Agent<span>your proxy</span></button>
+    </div>
+
+    <!-- BENCH -->
+    <div class="tabpanel" role="tabpanel" id="p-bench" aria-labelledby="t-bench">
+      <div class="bench">
+        <div class="rack" id="rack"><p style="color:var(--mute);font-family:var(--mono);font-size:12px;padding:16px">Module rack loads with the page script.</p></div>
+        <aside class="readout brk lit">
+          <div class="ro-bar"><span class="lamp" id="roLamp"></span> build manifest</div>
+          <pre class="ro-body" id="roBody">select modules to begin</pre>
+          <div class="ro-foot">
+            <button class="btn" id="sendBuild" type="button">Send this build</button>
+            <button class="btn btn-ghost" id="resetBuild" type="button">Reset</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- AMOS -->
+    <div class="tabpanel" role="tabpanel" id="p-amos" aria-labelledby="t-amos" hidden>
+      <div class="demo">
+        <div class="pane brk">
+          <h3>Candidate action</h3>
+          <div class="in">
+            <textarea id="amIn" maxlength="500" placeholder="e.g. drop the staging table and re-run the migration on prod tonight"></textarea>
+            <div class="row"><button class="btn" id="amRun" type="button">Arbitrate</button></div>
+            <div class="row" style="margin-top:12px">
+              <button class="mini" data-am="rm -rf the old build dir on prod, no backup, before the demo">destructive</button>
+              <button class="mini" data-am="ship the documented one-shot installer to staging with a dry-run flag and versioned rollback">staged</button>
+              <button class="mini" data-am="rewrite the whole dashboard in a new framework and also add billing while we are in there">scope creep</button>
+            </div>
+          </div>
+          <div class="axes" id="amHeads"></div>
+          <div class="in">
+            <dl class="dl">
+              <dt>neg_worst</dt><dd id="amSrc">—</dd>
+              <dt>floor_tripped</dt><dd id="amFloor">—</dd>
+              <dt>authorization</dt><dd id="amAuth">any head may halt; none may authorize alone</dd>
+            </dl>
+          </div>
+        </div>
+        <aside class="readout brk lit">
+          <div class="ro-bar"><span class="lamp" id="amLamp"></span> verdict</div>
+          <div style="padding:15px">
+            <div class="vbig" id="amV">—</div>
+            <div class="vband" id="amB">awaiting candidate</div>
+            <div class="rail"><div class="zone z1"></div><div class="zone z2"></div><div class="zone z3"></div><div class="needle" id="amN" style="left:0"></div></div>
+            <div class="scale"><span id="amMin">−1.10</span><span>0.35</span><span>0.70</span><span id="amMax">+1.88</span></div>
+            <p class="formula" id="amF">verdict = pos_best − neg_worst + 0.5 × neut_best</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- NUKE -->
+    <div class="tabpanel" role="tabpanel" id="p-nuke" aria-labelledby="t-nuke" hidden>
+      <div class="demo">
+        <div class="pane brk">
+          <h3>Paste a config, env file, or log</h3>
+          <div class="in">
+            <textarea id="nkIn" placeholder="paste .env, config.json, a log tail, anything you are about to commit"></textarea>
+            <div class="row">
+              <button class="btn" id="nkRun" type="button">Scan</button>
+              <button class="btn btn-ghost" id="nkRedact" type="button">Redact</button>
+              <button class="mini" id="nkSample" type="button">load sample</button>
+            </div>
+          </div>
+          <div class="find" id="nkFind"></div>
+        </div>
+        <aside class="readout brk lit">
+          <div class="ro-bar"><span class="lamp" id="nkLamp"></span> sweep</div>
+          <div class="gauge"><b id="nkN">0</b><em id="nkVerdict">nothing scanned</em></div>
+          <div class="in" style="border-top:1px solid var(--line)">
+            <dl class="dl">
+              <dt>rules</dt><dd id="nkRules">0</dd>
+              <dt>lines</dt><dd id="nkLines">0</dd>
+              <dt>precision</dt><dd>0.944</dd>
+              <dt>recall</dt><dd>0.878</dd>
+              <dt>F1</dt><dd>0.910</dd>
+            </dl>
+            <p class="mini" style="border:0;padding:12px 0 0;cursor:default">Benchmarked against 213 planted secrets and 500 adversarial decoys. Runs in your browser; nothing is uploaded.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- NOMX -->
+    <div class="tabpanel" role="tabpanel" id="p-nomx" aria-labelledby="t-nomx" hidden>
+      <div class="demo">
+        <div class="pane brk">
+          <h3>Readiness checks</h3>
+          <div class="checks" id="nxChecks"></div>
+        </div>
+        <aside class="readout brk lit">
+          <div class="ro-bar"><span class="lamp" id="nxLamp"></span> release gate</div>
+          <div class="gauge"><b id="nxScore">0</b><em id="nxBand">not scored</em></div>
+          <div class="in" style="border-top:1px solid var(--line)">
+            <dl class="dl">
+              <dt>weighted</dt><dd id="nxW">0 / 100</dd>
+              <dt>blocking</dt><dd id="nxBlock">—</dd>
+              <dt>next action</dt><dd id="nxNext">—</dd>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </div>
+    <!-- AGENT -->
+    <div class="tabpanel" role="tabpanel" id="p-agent" aria-labelledby="t-agent" hidden>
+      <div class="demo">
+        <div class="pane brk">
+          <h3>Agent</h3>
+          <div class="in">
+            <textarea id="agIn" maxlength="500" placeholder="describe the problem you want automated"></textarea>
+            <div class="row"><button class="btn" id="agRun" type="button">Send</button></div>
+          </div>
+          <div class="in" style="border-top:1px solid var(--line)">
+            <pre class="ro-body" id="agOut" style="padding:0;min-height:80px">idle</pre>
+          </div>
+        </div>
+        <aside class="readout brk lit">
+          <div class="ro-bar"><span class="lamp" id="agLamp"></span> endpoint</div>
+          <div class="in">
+            <dl class="dl">
+              <dt>target</dt><dd id="agTarget">not set</dd>
+              <dt>backend</dt><dd>your server</dd>
+              <dt>keys held</dt><dd>none in this page</dd>
+            </dl>
+            <p class="mini" style="border:0;padding:12px 0 0;cursor:default">Set CONFIG.AGENT_ENDPOINT to your proxy URL. Runs on your box, your model, your rules.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="scope">
+  <div class="wrap">
+    <div class="s-head">
+      <p class="eyebrow">Definitions</p>
+      <h2>What the words mean</h2>
+      <p>Every tier is priced in these units. Nothing is listed below that isn't defined here.</p>
+    </div>
+    <dl class="defs">
+      <div class="def"><dt>Workflow module</dt><dd>One automation that runs end to end without you: a scheduled script, webhook handler, sync job, or CLI command. Delivered as source, documented, with a rollback path.</dd></div>
+      <div class="def"><dt>Agent personality</dt><dd>A configured AI assistant with a fixed system prompt, tool access, and guardrails, pointed at your data. Runs on your API key or locally through Ollama.</dd></div>
+      <div class="def"><dt>Identity engine</dt><dd>The shell tying modules together: a command surface, shared config, logging, and a start/stop routine so the whole system survives a reboot.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="builds">
+  <div class="wrap">
+    <div class="s-head">
+      <p class="eyebrow">Prior work</p>
+      <h2>Systems already built</h2>
+      <p>Status is labeled straight. Shipped means running. Prototype means the core works and the edges don't.</p>
+    </div>
+    <div class="builds">
+      <article class="build reveal"><div class="build-top"><h3>A.M.O.S.</h3><span class="tag live">Shipped</span></div>
+        <p>Tri-daemon prompt watchdog. Three scoring heads evaluate every candidate action; any head can halt, none can authorize alone. CLI, HTTP API, plugin system, versioned rollback.</p></article>
+      <article class="build reveal"><div class="build-top"><h3>NOMX</h3><span class="tag live">Shipped</span></div>
+        <p>Local command center. Python and SQLite engine that scores project readiness before release, running entirely on-device under Termux.</p></article>
+      <article class="build reveal"><div class="build-top"><h3>Pinky Hub</h3><span class="tag proto">Prototype</span></div>
+        <p>Local AI hub: Flask UI over llama.cpp with hot model swapping, plugin manifest parsing, and multi-model fusion modes. Runs offline.</p></article>
+      <article class="build reveal"><div class="build-top"><h3>nuke_scanner</h3><span class="tag live">Shipped</span></div>
+        <p>Filesystem secret scanner and cleanup tool for Android. Finds credentials left in project directories and quarantines them before they reach a repo.</p></article>
+      <article class="build reveal"><div class="build-top"><h3>FMOne</h3><span class="tag proto">Prototype</span></div>
+        <p>One-shot installer and daemon that reads a capability baseline, generates the missing service stubs, and pushes each to its own repo.</p></article>
+      <article class="build reveal"><div class="build-top"><h3>Cold Fusion AI</h3><span class="tag proto">Prototype</span></div>
+        <p>Chat OS built on its own stack. Listing on There's An AI For That; the engine is the product, not a wrapper on someone else's endpoint.</p></article>
+      <article class="build reveal"><div class="build-top"><h3>Digital Aether</h3><span class="tag live">Shipped</span></div>
+        <p>Single-file ecosystem hub cataloguing twelve web apps, live status, and a link audit — the index that keeps a large personal system navigable.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="s-head">
+      <p class="eyebrow">Distribution</p>
+      <h2>Three tiers. One spec each.</h2>
+      <p>Half up front, half on delivery. Nothing is billed until you approve a written scope, so the price you see is the price you pay.</p>
+    </div>
+
+    <div class="sheets">
+      <article class="sheet">
+        <div class="sheet-head"><p class="pn">Tier 1</p><h3>Starter OS</h3><p class="price">$149<small>Fixed · one build</small></p></div>
+        <dl class="spec">
+          <div><dt>Includes</dt><dd>2 workflow modules, 1 agent personality</dd></div>
+          <div><dt>Surface</dt><dd>CLI or single-page dashboard</dd></div>
+          <div><dt>Delivery</dt><dd>Source in your repo + setup doc</dd></div>
+          <div><dt>Turnaround</dt><dd>7 days from approved scope</dd></div>
+          <div><dt>Support</dt><dd>14 days of fixes</dd></div>
+        </dl>
+        <p class="excl">Not included: hosting, third-party API costs, ongoing maintenance.</p>
+        <div class="sheet-foot"><button class="btn" data-buy="starter" data-tier="Starter OS — $149">Get Starter OS</button></div>
+      </article>
+
+      <article class="sheet feature">
+        <div class="sheet-head"><p class="pn">Tier 2 · Most requested</p><h3>Life OS</h3><p class="price">$449<small>Fixed · one build</small></p></div>
+        <dl class="spec">
+          <div><dt>Includes</dt><dd>5 workflow modules, 2 agent personalities, identity engine</dd></div>
+          <div><dt>Surface</dt><dd>Dashboard with logging and start/stop control</dd></div>
+          <div><dt>Delivery</dt><dd>Source in your repo + setup doc + walkthrough call</dd></div>
+          <div><dt>Turnaround</dt><dd>14 days from approved scope</dd></div>
+          <div><dt>Support</dt><dd>30 days of fixes</dd></div>
+        </dl>
+        <p class="excl">Not included: hosting, third-party API costs, ongoing maintenance.</p>
+        <div class="sheet-foot"><button class="btn" data-buy="life" data-tier="Life OS — $449">Get Life OS</button></div>
+      </article>
+
+      <article class="sheet">
+        <div class="sheet-head"><p class="pn">Tier 3</p><h3>Professional OS</h3><p class="price">From $1,200<small>Quoted after scope call</small></p></div>
+        <dl class="spec">
+          <div><dt>Includes</dt><dd>10+ modules, 4 agent personalities, identity engine, integrations</dd></div>
+          <div><dt>Surface</dt><dd>Dashboard, API, deployment to your server</dd></div>
+          <div><dt>Delivery</dt><dd>Source, runbook, handover session</dd></div>
+          <div><dt>Turnaround</dt><dd>3–5 weeks, staged milestones</dd></div>
+          <div><dt>Support</dt><dd>60 days of fixes, retainer optional</dd></div>
+        </dl>
+        <p class="excl">Not included: hosting, third-party API costs, compliance certification.</p>
+        <div class="sheet-foot"><button class="btn" data-buy="pro" data-tier="Professional OS — from $1,200">Book a scope call</button></div>
+      </article>
+    </div>
+
+    <div class="custom">
+      <p><strong>Something else?</strong> Hardware interfacing, OBD-II and embedded work, or a system that fits no tier. Describe it and you get a fixed quote or a straight no.</p>
+      <a class="btn btn-ghost" href="#contact">Describe the project</a>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="s-head">
+      <p class="eyebrow">How a build runs</p>
+      <h2>Four steps, in this order</h2>
+      <p>The sequence is the product: nothing is built before the spec is signed, nothing is billed before you've seen what you're buying.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div><h3>Intake</h3><p>You describe the problem in writing or on a 20-minute call. No charge, no obligation.</p></div></div>
+      <div class="step"><div><h3>Scope document</h3><p>You get a written spec: every module named, its inputs and outputs, the delivery format, the fixed price. You approve it or you walk.</p></div></div>
+      <div class="step"><div><h3>Build</h3><p>Work runs against the spec. Commits land in your own repo as they happen — no surprise at the end.</p></div></div>
+      <div class="step"><div><h3>Handover</h3><p>Setup doc, walkthrough, and the fix window opens. Anything in the spec that doesn't work gets fixed at no cost.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="s-head"><p class="eyebrow">Answers</p><h2>Before you send money</h2></div>
+    <details><summary>What do I own at the end?</summary><p>All source, in a repository you control, licensed so you can modify and run it without me. No per-seat fees, no phone-home.</p></details>
+    <details><summary>What if it doesn't work?</summary><p>Anything in the approved scope that doesn't work gets fixed inside the support window at no charge. If a build can't be made to meet its own spec, the balance is refunded.</p></details>
+    <details><summary>Refunds?</summary><p>Full refund of the deposit any time before build work starts. After that, refunds cover the unbuilt portion of the scope.</p></details>
+    <details><summary>What happens to my data?</summary><p>Only what you send to get the work done. It sits on encrypted storage, isn't sold or shared, and is deleted on request within 30 days. Builds run on your infrastructure and your API keys, not mine.</p></details>
+    <details><summary>Does this site track me?</summary><p>No third-party analytics, no ad pixels, no cross-site tracking. Settings you choose here are stored on this device only.</p></details>
+    <details><summary>Who's behind it?</summary><p>Dakota Moses, working as ADHDAKOTA. Self-taught systems engineer; background across software, hardware, and automation. Prior builds are listed above and the code is public where it can be.</p></details>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="s-head"><p class="eyebrow">Intake</p><h2>Describe the problem</h2><p>What you write here becomes the first draft of the scope document. Specifics beat pitches.</p></div>
+    <form class="form" id="intake" novalidate>
+      <input type="text" name="name" placeholder="Name" autocomplete="name" required aria-label="Name">
+      <input type="email" name="email" placeholder="Email" autocomplete="email" required aria-label="Email">
+      <select name="tier" id="tierSel" class="full" aria-label="Build interest">
+        <option>Not sure yet — recommend something</option>
+        <option>Starter OS — $149</option>
+        <option>Life OS — $449</option>
+        <option>Professional OS — from $1,200</option>
+        <option>Custom / hardware</option>
+      </select>
+      <textarea class="full" name="message" placeholder="What breaks, what you do manually today, and what a fixed version looks like." required aria-label="Project description"></textarea>
+      <div class="full"><button class="btn" type="submit">Send intake</button></div>
+    </form>
+    <p class="form-note" id="formNote">Replies within one business day.</p>
+  </div>
+</section>
+
+</main>
+
+<div class="stamp"><span>ADHDAKOTA</span></div>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> ADHDAKOTA OS Labz</span>
+    <a href="#faq">Terms &amp; refunds</a>
+    <button class="prefs-btn" id="prefsOpen2" style="border:none;padding:0;background:none;text-transform:none;letter-spacing:0;font-size:11.5px">Privacy &amp; data settings</button>
+    <a href="https://codedkota.com">codedkota.com</a>
+    <span class="v">v3.1</span>
+  </div>
+</footer>
+
+<dialog id="prefs">
+  <div class="dlg-head"><h2>Privacy &amp; data settings</h2><button class="x" id="prefsClose" aria-label="Close">×</button></div>
+  <div class="dlg-body">
+    <p>These settings control this browser only and are stored on this device. They are not a legal agreement, and nothing here is sent to a server.</p>
+    <div class="toggle"><span>Reduce motion and dim the cable rig</span><input type="checkbox" id="tgMotion"></div>
+    <div class="toggle"><span>Remember my intake form entries</span><input type="checkbox" id="tgForm"></div>
+    <p style="margin-top:18px">To delete anything already sent by email, write to the contact address; removal happens within 30 days. Full terms are in the FAQ.</p>
+  </div>
+</dialog>
+
+<script>
+/* ══ CONFIG — set these and the page is live ══════════════ */
+const CONFIG = {
+  CHECKOUT:{ starter:"", life:"", pro:"" },   // payment links; blank routes to intake
+  COLD_FUSION_URL:"",                         // your chatbot's page, when it goes live
+  AGENT_ENDPOINT:"",                          // your agent_proxy.py, e.g. "https://api.adhdakota.pro/api/agent"
+  FORM_ENDPOINT:"",                           // form handler; blank = mailto fallback
+  CONTACT_EMAIL:"hello@adhdakota.pro"
+};
+
+/* ══ storage that can't throw ═════════════════════════════ */
+const mem={};
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return mem[k]??null}},
+             set(k,v){try{localStorage.setItem(k,v)}catch(e){mem[k]=v}}};
+
+/* ══ NEON CABLE RIG ═══════════════════════════════════════
+   Braided bundles: N strands wound around a sagging spine,
+   clamped at intervals, lit ember + signal against dead
+   conduit strands. Rendered only into page gutters.        */
+const rig = document.getElementById("rig");
+const NS = "http://www.w3.org/2000/svg";
+let reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function rnd(seed){ let s=seed; return ()=> (s=(s*16807)%2147483647)/2147483647; }
+
+function spineVertical(x, yTop, yBot, amp, freq, phase, n){
+  const pts=[];
+  for(let i=0;i<n;i++){
+    const t=i/(n-1);
+    pts.push([ x + Math.sin(t*Math.PI*freq+phase)*amp + Math.sin(t*Math.PI*1.7+phase)*amp*0.35,
+               yTop + t*(yBot-yTop) ]);
+  }
+  return pts;
+}
+function spineSwag(x1,y1,x2,y2,sag,n){
+  const pts=[];
+  for(let i=0;i<n;i++){
+    const t=i/(n-1);
+    pts.push([ x1+(x2-x1)*t, y1+(y2-y1)*t + Math.sin(Math.PI*t)*sag ]);
+  }
+  return pts;
+}
+function braid(pts, radius, turns, phase){
+  const out=[];
+  for(let i=0;i<pts.length;i++){
+    const t=i/(pts.length-1);
+    const p=pts[i], q=pts[Math.min(i+1,pts.length-1)], r=pts[Math.max(i-1,0)];
+    let dx=q[0]-r[0], dy=q[1]-r[1];
+    const len=Math.hypot(dx,dy)||1; dx/=len; dy/=len;
+    const off=Math.sin(t*Math.PI*2*turns+phase)*radius;
+    out.push([ p[0]-dy*off, p[1]+dx*off ]);
+  }
+  return out;
+}
+const d = pts => pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" ");
+
+const CSSVAR = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function buildRig(){
+  rig.innerHTML="";
+  const EMBER=CSSVAR("--ember"), SIGNAL=CSSVAR("--signal"),
+        DEAD1=CSSVAR("--line"), DEAD2=CSSVAR("--steel-700"),
+        HW=CSSVAR("--mute"), BOX=CSSVAR("--steel-800");
+  const W=innerWidth, H=innerHeight;
+  const contentW=Math.min(1120, W-40);
+  const gutter=(W-contentW)/2;
+  const narrow = gutter < 86;               // phones: cables hug the screen edges
+
+  const svg=document.createElementNS(NS,"svg");
+  svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
+  svg.setAttribute("preserveAspectRatio","none");
+  svg.innerHTML=`<defs>
+    <filter id="glo" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter></defs>`;
+
+  /* lit strands carry current; dead strands are unlit conduit for contrast */
+  const palette=[
+    {c:EMBER,lit:1},{c:SIGNAL,lit:1},{c:DEAD1,lit:0},
+    {c:EMBER,lit:1},{c:SIGNAL,lit:1},{c:DEAD2,lit:0},{c:EMBER,lit:1}
+  ];
+  const e = Math.max(11, gutter*0.42);
+  const rig_specs = narrow ? [
+    {spine:spineVertical(e,        -30,H+40, 7,2.4,0.3,60), r:4.4, turns:3.2, dur:16},
+    {spine:spineVertical(W-e,      -40,H+40, 8,2.8,1.6,60), r:4.8, turns:3.0, dur:19},
+    {spine:spineVertical(e+9,      -70,H+30, 5,3.6,2.4,60), r:2.9, turns:4.6, dur:23},
+    {spine:spineVertical(W-e-9,    -55,H+50, 5,3.2,4.1,60), r:3.1, turns:4.2, dur:21}
+  ] : [
+    {spine:spineVertical(gutter*0.30,-30,H+40,gutter*0.14,2.2,0.4,70), r:8.5, turns:3.4, dur:15},
+    {spine:spineVertical(gutter*0.58,-60,H+30,gutter*0.11,3.1,2.1,70), r:6.0, turns:4.6, dur:19},
+    {spine:spineVertical(gutter*0.84,-90,H+30,gutter*0.08,4.0,4.6,70), r:4.0, turns:5.4, dur:24},
+    {spine:spineVertical(W-gutter*0.28,-40,H+40,gutter*0.15,2.6,1.2,70), r:9.0, turns:3.0, dur:17},
+    {spine:spineVertical(W-gutter*0.56,-20,H+50,gutter*0.10,3.6,3.4,70), r:5.4, turns:5.2, dur:22},
+    {spine:spineVertical(W-gutter*0.86,-75,H+20,gutter*0.07,4.4,1.9,70), r:3.6, turns:6.0, dur:26},
+    {spine:spineSwag(-20,110,gutter*0.95,H*0.42,90,50), r:5.4, turns:2.4, dur:16},
+    {spine:spineSwag(W+20,150,W-gutter*0.95,H*0.55,110,50), r:6.0, turns:2.2, dur:20}
+  ];
+
+  rig_specs.forEach((sp,bi)=>{
+    const g=document.createElementNS(NS,"g");
+    g.setAttribute("class","bundle");
+    g.style.animationDuration=sp.dur+"s";
+    g.style.animationDelay=(-bi*2.6)+"s";
+
+    const strands = narrow ? 4 : 7;
+    for(let s=0;s<strands;s++){
+      const {c:col,lit}=palette[(s+bi)%palette.length];
+      const pts=braid(sp.spine, sp.r, sp.turns, (s/strands)*Math.PI*2);
+      const dead=!lit;
+      if(lit){
+        const halo=document.createElementNS(NS,"path");
+        halo.setAttribute("d",d(pts)); halo.setAttribute("fill","none");
+        halo.setAttribute("stroke",col); halo.setAttribute("stroke-width", narrow? "5":"7");
+        halo.setAttribute("stroke-opacity",".26"); halo.setAttribute("filter","url(#glo)");
+        g.appendChild(halo);
+      }
+      const core=document.createElementNS(NS,"path");
+      core.setAttribute("id",`cab${bi}_${s}`);
+      core.setAttribute("d",d(pts)); core.setAttribute("fill","none");
+      core.setAttribute("stroke",col);
+      core.setAttribute("stroke-width", dead? "2.2" : "1.5");
+      core.setAttribute("stroke-opacity", dead? ".6" : ".96");
+      core.setAttribute("stroke-linecap","round");
+      g.appendChild(core);
+    }
+
+    /* clamps — the hardware that makes it read as bundled */
+    [0.14,0.37,0.58,0.81].forEach(t=>{
+      const i=Math.round(t*(sp.spine.length-1));
+      const p=sp.spine[i], q=sp.spine[Math.min(i+1,sp.spine.length-1)];
+      let dx=q[0]-p[0], dy=q[1]-p[1];
+      const l=Math.hypot(dx,dy)||1; dx/=l; dy/=l;
+      const w=sp.r*2.5;
+      const c=document.createElementNS(NS,"line");
+      c.setAttribute("x1",p[0]+dy*w); c.setAttribute("y1",p[1]-dx*w);
+      c.setAttribute("x2",p[0]-dy*w); c.setAttribute("y2",p[1]+dx*w);
+      c.setAttribute("stroke",HW); c.setAttribute("stroke-width","3.4");
+      c.setAttribute("stroke-linecap","round"); c.setAttribute("stroke-opacity",".8");
+      g.appendChild(c);
+    });
+
+    /* junction box at the hang point — the run comes from somewhere */
+    if(sp.spine[0][1] < 0){
+      const hp = sp.spine.find(p=>p[1] >= 6) || sp.spine[0];
+      const bw = Math.max(14, sp.r*2.6), bh = 11;
+      const box=document.createElementNS(NS,"rect");
+      box.setAttribute("x",hp[0]-bw/2); box.setAttribute("y",hp[1]-2);
+      box.setAttribute("width",bw); box.setAttribute("height",bh);
+      box.setAttribute("rx","1.5"); box.setAttribute("fill",BOX);
+      box.setAttribute("stroke",HW); box.setAttribute("stroke-width","1.2");
+      g.appendChild(box);
+      const led=document.createElementNS(NS,"circle");
+      led.setAttribute("cx",hp[0]); led.setAttribute("cy",hp[1]+3.5); led.setAttribute("r","1.7");
+      led.setAttribute("fill",EMBER); led.setAttribute("filter","url(#glo)");
+      g.appendChild(led);
+    }
+
+    /* current pulses running the line */
+    if(!reduce){
+      for(let k=0;k<2;k++){
+        const dot=document.createElementNS(NS,"circle");
+        dot.setAttribute("r","2.4");
+        dot.setAttribute("fill", k? SIGNAL:EMBER);
+        dot.setAttribute("filter","url(#glo)");
+        const mo=document.createElementNS(NS,"animateMotion");
+        mo.setAttribute("dur",(9+bi*2.5+k*4)+"s");
+        mo.setAttribute("repeatCount","indefinite");
+        mo.setAttribute("begin",(-bi*3-k*5)+"s");
+        const mp=document.createElementNS(NS,"mpath");
+        mp.setAttributeNS("http://www.w3.org/1999/xlink","href",`#cab${bi}_${k?1:3}`);
+        mp.setAttribute("href",`#cab${bi}_${k?1:3}`);
+        mo.appendChild(mp); dot.appendChild(mo); g.appendChild(dot);
+      }
+    }
+    svg.appendChild(g);
+  });
+  rig.appendChild(svg);
+}
+let rt; addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(()=>{try{buildRig()}catch(e){}},180)});
+try{ buildRig(); }catch(e){ rig.style.display="none"; }
+
+/* ══ boot readout ═════════════════════════════════════════ */
+const bootLines=[
+  ["intake","open","ok"],
+  ["scope","written before billing","ok"],
+  ["delivery","source to your repo","ok"],
+  ["support","14–60 day fix window","ok"],
+  ["lab bench","live","ok"],
+  ["checkout",CONFIG.CHECKOUT.starter?"live":"by intake",CONFIG.CHECKOUT.starter?"ok":"warn"]
+];
+const boot=document.getElementById("boot");
+bootLines.forEach((l,i)=>{
+  const el=document.createElement("div");
+  el.className="line"; el.style.animationDelay=(i*110)+"ms";
+  el.innerHTML='<span class="k">'+l[0]+'</span><span class="v '+l[2]+'">'+l[1]+'</span>';
+  boot.appendChild(el);
+});
+if(!CONFIG.CHECKOUT.starter) document.getElementById("lamp").classList.add("warn");
+
+/* ══ checkout: never a dead link ══════════════════════════ */
+document.querySelectorAll("[data-buy]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const url=CONFIG.CHECKOUT[btn.dataset.buy];
+    if(url){ location.href=url; return; }
+    const sel=document.getElementById("tierSel");
+    if(sel) sel.value=btn.dataset.tier;
+    document.getElementById("contact").scrollIntoView({behavior:reduce?"auto":"smooth"});
+    document.querySelector('#intake [name="name"]').focus({preventScroll:true});
+  });
+});
+
+/* ══ THE BENCH ════════════════════════════════════════════
+   Configurator. Deterministic, local, no network of any kind.
+   Edit LIB to change what the lab offers.                    */
+const LIB=[
+ {d:"Money", items:[
+   ["Invoice watcher","pulls new invoices into one ledger"],
+   ["Aging check","flags overdue, drafts the chase"],
+   ["Expense sorter","categorises receipts on arrival"]]},
+ {d:"Comms", items:[
+   ["Inbox triage","sorts mail into act / read / archive"],
+   ["Follow-up tracker","reopens threads that got no reply"],
+   ["Draft queue","turns notes into scheduled posts"]]},
+ {d:"Time", items:[
+   ["Calendar sweep","pulls commitments out of messages"],
+   ["Deadline monitor","escalates work with no progress logged"],
+   ["Focus guard","defends blocks, defers the rest"]]},
+ {d:"Files", items:[
+   ["Ingest sorter","renames and files documents on arrival"],
+   ["Backup verifier","proves the copy exists"],
+   ["Secret scanner","quarantines credentials before they ship"]]},
+ {d:"Systems", items:[
+   ["Health probe","checks the service on an interval"],
+   ["Alert router","escalates real failure only"],
+   ["Deploy gate","blocks a release that fails its own checks"],
+   ["Device reader","polls a serial or CAN interface"]]}
+];
+const AGENTS=[
+ ["Watchdog","scores every action before it runs, can halt"],
+ ["Archivist","answers where things are and what changed"],
+ ["Collections","tells you who to chase, in order"],
+ ["Accountability","names the avoidance pattern out loud"],
+ ["Diagnostic","turns raw codes into a plain fault summary"]
+];
+const SURFACES=[["CLI","terminal only"],["Dashboard","browser panel"],["API","for your other systems"],["On-device","phone, offline"]];
+const RUNTIMES=[["Your machine","laptop or desktop"],["Your server","VPS or box you own"],["Android / Termux","phone as the runtime"]];
+
+const state={mods:new Set(),agents:new Set(),surface:null,runtime:null};
+
+const rack=document.getElementById("rack");
+rack.innerHTML =
+  LIB.map(g=>`<div class="dom"><h3>${g.d}<em data-c="${g.d}"></em></h3><div class="chips">${
+    g.items.map(([n,d])=>`<button class="chip" type="button" data-t="mod" data-v="${n}" aria-pressed="false">${n}<small>${d}</small></button>`).join("")
+  }</div></div>`).join("") +
+  `<div class="dom"><h3>Agent personalities<em data-c="agents"></em></h3><div class="chips">${
+    AGENTS.map(([n,d])=>`<button class="chip" type="button" data-t="agent" data-v="${n}" aria-pressed="false">${n}<small>${d}</small></button>`).join("")
+  }</div></div>` +
+  `<div class="dom"><h3>Surface</h3><div class="chips" role="group" aria-label="Surface">${
+    SURFACES.map(([n,d])=>`<button class="chip" type="button" data-t="surface" data-v="${n}" aria-pressed="false">${n}<small>${d}</small></button>`).join("")
+  }</div></div>` +
+  `<div class="dom"><h3>Runtime</h3><div class="chips" role="group" aria-label="Runtime">${
+    RUNTIMES.map(([n,d])=>`<button class="chip" type="button" data-t="runtime" data-v="${n}" aria-pressed="false">${n}<small>${d}</small></button>`).join("")
+  }</div></div>`;
+
+function resolve(){
+  const m=state.mods.size, a=state.agents.size;
+  const heavy = state.surface==="API" || state.runtime==="Your server";
+  let tier,label,days;
+  if(m===0&&a===0){ tier=null; label="unconfigured"; days="—"; }
+  else if(m<=2&&a<=1&&!heavy){ tier="starter"; label="Starter OS — $149"; days="7 days"; }
+  else if(m<=5&&a<=2){ tier="life"; label="Life OS — $449"; days="14 days"; }
+  else { tier="pro"; label="Professional OS — from $1,200"; days="3–5 weeks"; }
+  return {m,a,tier,label,days};
+}
+
+function paint(){
+  const r=resolve();
+  const set=(id,v,on)=>{const el=document.getElementById(id);el.textContent=v;el.classList.toggle("set",!!on);};
+  set("mfMod",r.m,r.m>0); set("mfAgt",r.a,r.a>0);
+  set("mfSur",state.surface||"—",!!state.surface);
+  set("mfRun",state.runtime||"—",!!state.runtime);
+  set("mfTier",r.label,!!r.tier); set("mfTime",r.days,!!r.tier);
+  document.getElementById("roLamp").classList.toggle("warn",!r.tier);
+
+  LIB.forEach(g=>{
+    const n=g.items.filter(([x])=>state.mods.has(x)).length;
+    const el=document.querySelector(`em[data-c="${g.d}"]`); if(el) el.textContent=n?n:"";
+  });
+  const ae=document.querySelector('em[data-c="agents"]'); if(ae) ae.textContent=state.agents.size||"";
+
+  const body=document.getElementById("roBody");
+  if(!r.m && !r.a && !state.surface && !state.runtime){
+    body.textContent="select modules to begin"; }
+  else{
+    const L=[];
+    L.push('<span class="k">modules</span>');
+    L.push(state.mods.size ? [...state.mods].map(x=>'  <span class="a">'+x+'</span>').join("\n") : '  <span class="k">none</span>');
+    L.push('<span class="k">agents</span>');
+    L.push(state.agents.size ? [...state.agents].map(x=>'  <span class="s">'+x+'</span>').join("\n") : '  <span class="k">none</span>');
+    L.push('<span class="k">surface</span>\n  '+(state.surface||'<span class="k">unset</span>'));
+    L.push('<span class="k">runtime</span>\n  '+(state.runtime||'<span class="k">unset</span>'));
+    L.push('<span class="k">tier</span>\n  <span class="a">'+r.label+'</span>');
+    L.push('<span class="k">build time</span>\n  '+r.days);
+    body.innerHTML=L.join("\n");
+  }
+  document.querySelectorAll(".sheet").forEach(el=>el.classList.remove("match"));
+  if(r.tier){
+    const btn=document.querySelector(`[data-buy="${r.tier}"]`);
+    if(btn) btn.closest(".sheet").classList.add("match");
+  }
+}
+
+rack.addEventListener("click",e=>{
+  const b=e.target.closest(".chip"); if(!b) return;
+  const {t,v}=b.dataset;
+  if(t==="mod"||t==="agent"){
+    const set = t==="mod" ? state.mods : state.agents;
+    set.has(v) ? set.delete(v) : set.add(v);
+    b.setAttribute("aria-pressed", set.has(v));
+  }else{
+    const same = state[t]===v;
+    state[t] = same ? null : v;
+    b.closest(".chips").querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed","false"));
+    if(!same) b.setAttribute("aria-pressed","true");
+  }
+  paint();
+});
+
+document.getElementById("resetBuild").addEventListener("click",()=>{
+  state.mods.clear(); state.agents.clear(); state.surface=null; state.runtime=null;
+  rack.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed","false"));
+  paint();
+});
+
+document.getElementById("sendBuild").addEventListener("click",()=>{
+  const r=resolve();
+  if(!r.tier){ document.getElementById("roBody").textContent="select at least one module before sending"; return; }
+  const spec =
+    "BUILD MANIFEST\n"+
+    "modules: "+([...state.mods].join(", ")||"none")+"\n"+
+    "agents: "+([...state.agents].join(", ")||"none")+"\n"+
+    "surface: "+(state.surface||"unset")+"\n"+
+    "runtime: "+(state.runtime||"unset")+"\n"+
+    "tier: "+r.label+"\n"+
+    "build time: "+r.days+"\n\n";
+  const ta=document.querySelector('#intake [name="message"]');
+  const sel=document.getElementById("tierSel");
+  if(sel) sel.value = r.tier==="starter" ? "Starter OS — $149"
+                    : r.tier==="life"    ? "Life OS — $449"
+                    : "Professional OS — from $1,200";
+  if(ta) ta.value = spec + "What breaks today: ";
+  document.getElementById("contact").scrollIntoView({behavior:reduce?"auto":"smooth"});
+  setTimeout(()=>{ const n=document.querySelector('#intake [name="name"]'); if(n) n.focus({preventScroll:true}); },300);
+});
+
+try{ paint(); }catch(e){}
+
+
+/* ══ TABS ═════════════════════════════════════════════════ */
+const tabs=[...document.querySelectorAll('#lab .tab')];
+function showTab(id){
+  tabs.forEach(t=>{
+    const on = t.id===id;
+    t.setAttribute("aria-selected",on);
+    document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+  });
+}
+tabs.forEach((t,i)=>{
+  t.addEventListener("click",()=>showTab(t.id));
+  t.addEventListener("keydown",e=>{
+    const d = e.key==="ArrowRight"?1 : e.key==="ArrowLeft"?-1 : 0;
+    if(!d) return;
+    e.preventDefault();
+    const n=tabs[(i+d+tabs.length)%tabs.length]; n.focus(); showTab(n.id);
+  });
+});
+
+/* ══ A.M.O.S. — tri-head arbitration ══════════════════════ */
+const AW={architect:{pos:1.00,neg:1.00,neut:0.50},
+          visioneer:{pos:1.25,neg:0.75,neut:0.50},
+          tactician:{pos:0.90,neg:1.10,neut:0.50}};
+const BAND_EXEC=0.70, BAND_INF=0.35, HALT_FLOOR=0.85;
+const AR={
+ architect:{pos:["reversible","rollback","backup","versioned","dry-run","dry run","staged","staging","tested","documented","idempotent","snapshot"],
+            neg:["rm -rf","drop table","drop the","delete","destroy","overwrite","force","prod","production","no backup","irreversible","truncate","wipe"],
+            neut:["maybe","unclear","not sure","tbd","some"]},
+ visioneer:{pos:["ship","publish","launch","demo","users","revenue","customer","portfolio","release"],
+            neg:["rewrite","refactor everything","from scratch","pivot","also add","while we are in there","new framework","unrelated"],
+            neut:["later","eventually","consider","explore"]},
+ tactician:{pos:["one-shot","one shot","script","scripted","automated","single","small","time-boxed","installer","command","cron"],
+            neg:["manual","by hand","many steps","tonight","asap","blocked","depends on","requires key","credential","external","untested"],
+            neut:["depends","varies","optional","if needed"]}
+};
+const ahits=(t,l)=>l.filter(k=>t.includes(k)).length;
+const asat=n=>n===0?0:Math.min(1,0.42+0.22*(n-1));
+const AMAX=k=>Math.max(...Object.values(AW).map(w=>w[k]));
+const AVMIN=-AMAX("neg"), AVMAX=AMAX("pos")+0.5*AMAX("neut"), ASPAN=AVMAX-AVMIN;
+const apct=v=>((v-AVMIN)/ASPAN)*100;
+
+document.getElementById("amMin").textContent="−"+Math.abs(AVMIN).toFixed(2);
+document.getElementById("amMax").textContent="+"+AVMAX.toFixed(2);
+try{(function(){
+  const z=document.querySelectorAll("#p-amos .zone");
+  if(z.length<3) return;
+  z[0].style.cssText+=`left:0;width:${apct(BAND_INF)}%`;
+  z[1].style.cssText+=`left:${apct(BAND_INF)}%;width:${apct(BAND_EXEC)-apct(BAND_INF)}%`;
+  z[2].style.cssText+=`left:${apct(BAND_EXEC)}%;width:${100-apct(BAND_EXEC)}%`;
+  document.getElementById("amHeads").innerHTML=Object.keys(AR).map(h=>`
+    <div class="axhd"><h4>${h}<i>${AW[h].pos}/${AW[h].neg}/${AW[h].neut}</i></h4>
+    ${[["pos","POS"],["neg","NEG"],["neut","NEU"]].map(([k,l])=>
+      `<div class="ax ${k}"><span>${l}</span><div class="track"><div class="fill" id="af_${h}_${k}"></div></div><span id="an_${h}_${k}">·</span></div>`).join("")}
+    <div class="abst" id="aa_${h}">&nbsp;</div></div>`).join("");
+})();}catch(e){}
+
+function amosScore(text){
+  const t=text.toLowerCase(), heads={};
+  for(const h of Object.keys(AR)){
+    const raw={pos:asat(ahits(t,AR[h].pos)),neg:asat(ahits(t,AR[h].neg)),neut:asat(ahits(t,AR[h].neut))};
+    const abstain=!raw.pos&&!raw.neg&&!raw.neut;
+    if(abstain) raw.neut=1.0;
+    heads[h]={raw,abstain,w:{pos:raw.pos*AW[h].pos,neg:raw.neg*AW[h].neg,neut:raw.neut*AW[h].neut}};
+  }
+  const N=Object.keys(heads);
+  const pos_best=Math.max(...N.map(h=>heads[h].w.pos));
+  const neut_best=Math.max(...N.map(h=>heads[h].w.neut));
+  let neg_worst=-1,src=null;
+  N.forEach(h=>{ if(heads[h].w.neg>neg_worst){neg_worst=heads[h].w.neg;src=h;} });
+  const verdict=pos_best-neg_worst+0.5*neut_best;
+  const floor=N.some(h=>heads[h].raw.neg>=HALT_FLOOR);
+  let band=verdict>=BAND_EXEC?"execute":verdict>=BAND_INF?"inform":"halt";
+  if(floor) band="halt";
+  return {heads,pos_best,neg_worst,neut_best,verdict,band,floor,src};
+}
+function amosRun(){
+  const t=document.getElementById("amIn").value.trim();
+  if(!t){ document.getElementById("amB").textContent="enter a candidate action"; return; }
+  const r=amosScore(t);
+  for(const h of Object.keys(r.heads)){
+    for(const k of ["pos","neg","neut"]){
+      document.getElementById(`af_${h}_${k}`).style.width=(r.heads[h].w[k]/1.25*100).toFixed(1)+"%";
+      document.getElementById(`an_${h}_${k}`).textContent=r.heads[h].w[k].toFixed(2);
+    }
+    document.getElementById(`aa_${h}`).textContent=r.heads[h].abstain?"abstained → neut 1.0":"\u00a0";
+  }
+  const v=document.getElementById("amV");
+  v.textContent=(r.verdict>=0?"+":"−")+Math.abs(r.verdict).toFixed(3);
+  v.className="vbig"+(r.band==="halt"?" halt":"");
+  document.getElementById("amB").textContent=r.band+(r.floor?" · halt floor tripped":"");
+  document.getElementById("amN").style.left=Math.max(0,Math.min(100,apct(r.verdict)))+"%";
+  document.getElementById("amF").innerHTML=
+    `verdict = <b>${r.pos_best.toFixed(2)}</b> − <b>${r.neg_worst.toFixed(2)}</b> + 0.5 × <b>${r.neut_best.toFixed(2)}</b> = <b>${r.verdict.toFixed(3)}</b>`;
+  document.getElementById("amSrc").innerHTML=`${r.src} <span class="hot">${r.neg_worst.toFixed(2)}</span>`;
+  document.getElementById("amFloor").innerHTML=r.floor?'<span class="hot">true</span>':"false";
+  document.getElementById("amLamp").classList.toggle("warn",r.band==="halt");
+}
+document.getElementById("amRun").addEventListener("click",amosRun);
+document.querySelectorAll("[data-am]").forEach(b=>b.addEventListener("click",()=>{
+  document.getElementById("amIn").value=b.dataset.am; amosRun();
+}));
+
+/* ══ nuke_scanner — secret sweep, local only ══════════════ */
+const NRULES=[
+ ["AWS access key id",/\bAKIA[0-9A-Z]{16}\b/g,"crit"],
+ ["Private key block",/-----BEGIN (?:RSA |EC |OPENSSH |PGP )?PRIVATE KEY-----/g,"crit"],
+ ["GitHub token",/\bgh[pousr]_[A-Za-z0-9]{16,}\b/g,"crit"],
+ ["Slack token",/\bxox[abprs]-[A-Za-z0-9-]{10,}\b/g,"crit"],
+ ["Stripe secret",/\bsk_(?:live|test)_[A-Za-z0-9]{16,}\b/g,"crit"],
+ ["Bearer / JWT",/\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{6,}/g,"crit"],
+ ["Password assignment",/\b(?:password|passwd|pwd)\s*[:=]\s*["']?[^\s"']{6,}/gi,"crit"],
+ ["Generic api key",/\b(?:api[_-]?key|secret|token|access[_-]?key)\s*[:=]\s*["']?[A-Za-z0-9_\-]{12,}/gi,"warn"],
+ ["Connection string",/\b[a-z]+:\/\/[^\s:@]+:[^\s:@]+@[^\s/]+/gi,"warn"],
+ ["Private IP",/\b(?:10\.\d{1,3}|192\.168|172\.(?:1[6-9]|2\d|3[01]))\.\d{1,3}\.\d{1,3}\b/g,"warn"]
+];
+function nukeScan(){
+  const src=document.getElementById("nkIn").value;
+  const lines=src.split("\n"), found=[];
+  lines.forEach((ln,i)=>NRULES.forEach(([name,re,sev])=>{
+    re.lastIndex=0;
+    if(re.test(ln)) found.push({line:i+1,name,sev});
+  }));
+  const el=document.getElementById("nkFind");
+  el.innerHTML = found.length
+    ? found.map(f=>`<div><span>L${f.line}</span><span>${f.name}</span><span class="sev ${f.sev}">${f.sev==="crit"?"critical":"review"}</span></div>`).join("")
+    : (src.trim()? '<div><span>—</span><span>no matches against 10 rules</span><span class="sev">clean</span></div>' : "");
+  const crit=found.filter(f=>f.sev==="crit").length;
+  document.getElementById("nkN").textContent=found.length;
+  document.getElementById("nkN").className=crit?"low":"";
+  document.getElementById("nkVerdict").textContent =
+    !src.trim()?"nothing scanned" : crit?"do not commit":found.length?"review before commit":"clear to commit";
+  document.getElementById("nkLamp").classList.toggle("warn",crit>0);
+  document.getElementById("nkRules").textContent=NRULES.length;
+  document.getElementById("nkLines").textContent=src.trim()?lines.length:0;
+}
+function nukeRedact(){
+  const ta=document.getElementById("nkIn");
+  let out=ta.value;
+  NRULES.forEach(([n,re])=>{ out=out.replace(new RegExp(re.source,re.flags),m=>{
+    const keep=m.slice(0,Math.min(6,m.indexOf("=")+1||4));
+    return keep+"[REDACTED:"+m.length+"]";
+  });});
+  ta.value=out; nukeScan();
+}
+document.getElementById("nkRun").addEventListener("click",nukeScan);
+document.getElementById("nkRedact").addEventListener("click",nukeRedact);
+document.getElementById("nkSample").addEventListener("click",()=>{
+  document.getElementById("nkIn").value=
+`# staging.env
+DB_URL=postgres://svc:hunter2@10.0.4.19:5432/app
+AWS_ACCESS_KEY_ID=AKIA3MPLE7XZQ2WLKD9F
+api_key: "a83nfk2Ldk93MslwQ0zzP1"
+LOG_LEVEL=debug
+public_bucket=cdn.adhdakota.pro`;
+  nukeScan();
+});
+
+/* ══ NOMX — release gate ══════════════════════════════════ */
+const NX=[
+ ["Runs from a clean clone","no undocumented local state",18,true],
+ ["Rollback path exists","you can undo a bad release",16,true],
+ ["Secrets swept","no credentials in the tree",16,true],
+ ["Install documented","someone else can stand it up",12,false],
+ ["Failure is visible","it tells you when it breaks",12,false],
+ ["Tested on target","runs where it will actually live",10,false],
+ ["Owns its state","one place, not scattered",8,false],
+ ["Versioned","you can name what shipped",8,false]
+];
+const nxState=new Set();
+document.getElementById("nxChecks").innerHTML=NX.map(([n,d,w,blk],i)=>
+ `<div class="check" role="checkbox" aria-checked="false" tabindex="0" data-i="${i}">
+    <span class="box"></span><span>${n}<small>${d} · weight ${w}${blk?" · blocking":""}</small></span></div>`).join("");
+function nxPaint(){
+  const score=[...nxState].reduce((a,i)=>a+NX[i][2],0);
+  const blocking=NX.map((r,i)=>[r,i]).filter(([r,i])=>r[3]&&!nxState.has(i));
+  const missing=NX.map((r,i)=>[r,i]).filter(([r,i])=>!nxState.has(i))
+                  .sort((a,b)=>b[0][2]-a[0][2]);
+  const band = blocking.length ? "blocked" : score>=85 ? "ship" : score>=60 ? "hold" : "not ready";
+  const el=document.getElementById("nxScore");
+  el.textContent=score; el.className=(band==="ship"?"":"low");
+  document.getElementById("nxBand").textContent=band;
+  document.getElementById("nxW").textContent=score+" / 100";
+  document.getElementById("nxBlock").innerHTML = blocking.length
+    ? '<span class="hot">'+blocking.map(([r])=>r[0]).join(", ")+'</span>' : "none";
+  document.getElementById("nxNext").textContent = missing.length ? missing[0][0][0] : "nothing outstanding";
+  document.getElementById("nxLamp").classList.toggle("warn",band!=="ship");
+}
+document.getElementById("nxChecks").addEventListener("click",e=>{
+  const c=e.target.closest(".check"); if(!c) return;
+  const i=+c.dataset.i;
+  nxState.has(i)?nxState.delete(i):nxState.add(i);
+  c.setAttribute("aria-checked",nxState.has(i)); nxPaint();
+});
+document.getElementById("nxChecks").addEventListener("keydown",e=>{
+  if(e.key!==" "&&e.key!=="Enter") return;
+  const c=e.target.closest(".check"); if(!c) return;
+  e.preventDefault(); c.click();
+});
+try{ nxPaint(); }catch(e){}
+
+/* ══ Agent tab — calls your proxy only ═══════════════════ */
+try{
+  const agT=document.getElementById("agTarget");
+  agT.textContent = CONFIG.AGENT_ENDPOINT || "not set";
+  document.getElementById("agLamp").classList.toggle("warn",!CONFIG.AGENT_ENDPOINT);
+  const agRun=async()=>{
+    const q=document.getElementById("agIn").value.trim();
+    const o=document.getElementById("agOut");
+    if(!q){ o.textContent="enter something to send"; return; }
+    if(!CONFIG.AGENT_ENDPOINT){
+      o.textContent="No endpoint configured.\n\nDeploy agent_proxy.py with install-agent.sh on your server, then set CONFIG.AGENT_ENDPOINT to its URL. GitHub Pages serves static files only, so the proxy runs on your box, not here.";
+      return;
+    }
+    o.textContent="…";
+    try{
+      const r=await fetch(CONFIG.AGENT_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt:q})});
+      const d=await r.json().catch(()=>({}));
+      o.textContent = d.text || d.error || ("HTTP "+r.status);
+    }catch(e){ o.textContent="Endpoint unreachable. Check the service is running and CORS allows this origin."; }
+  };
+  document.getElementById("agRun").addEventListener("click",agRun);
+}catch(e){}
+
+/* ══ intake form ══════════════════════════════════════════ */
+const form=document.getElementById("intake"), note=document.getElementById("formNote");
+if(store.get("rememberForm")==="1"){
+  ["name","email","message"].forEach(n=>{const v=store.get("f_"+n); if(v) form.elements[n].value=v;});
+}
+form.addEventListener("submit",async e=>{
+  e.preventDefault();
+  const data=Object.fromEntries(new FormData(form).entries());
+  if(!data.name||!data.email||!data.message){ note.textContent="Name, email, and a description are required."; return; }
+  if(store.get("rememberForm")==="1"){ ["name","email","message"].forEach(n=>store.set("f_"+n,data[n])); }
+  if(!CONFIG.FORM_ENDPOINT){
+    const body=encodeURIComponent("Tier: "+data.tier+"\n\n"+data.message+"\n\n— "+data.name+" ("+data.email+")");
+    location.href="mailto:"+CONFIG.CONTACT_EMAIL+"?subject="+encodeURIComponent("Intake — "+data.tier)+"&body="+body;
+    note.textContent="Opening your mail app. If nothing happens, write to "+CONFIG.CONTACT_EMAIL+".";
+    return;
+  }
+  note.textContent="Sending…";
+  try{
+    const r=await fetch(CONFIG.FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+    if(!r.ok) throw 0;
+    form.reset(); note.textContent="Received. You get a reply within one business day.";
+  }catch(e){ note.textContent="Send failed. Write to "+CONFIG.CONTACT_EMAIL+" and the message gets through."; }
+});
+
+/* ══ preferences ══════════════════════════════════════════ */
+const dlg=document.getElementById("prefs");
+["prefsOpen","prefsOpen2"].forEach(id=>{const b=document.getElementById(id); if(b) b.addEventListener("click",()=>dlg.showModal());});
+document.getElementById("prefsClose").addEventListener("click",()=>dlg.close());
+const tgMotion=document.getElementById("tgMotion"), tgForm=document.getElementById("tgForm");
+tgMotion.checked=store.get("reduceMotion")==="1";
+tgForm.checked=store.get("rememberForm")==="1";
+applyMotion();
+tgMotion.addEventListener("change",()=>{store.set("reduceMotion",tgMotion.checked?"1":"0");applyMotion();});
+tgForm.addEventListener("change",()=>{store.set("rememberForm",tgForm.checked?"1":"0");});
+function applyMotion(){
+  reduce = tgMotion.checked || matchMedia("(prefers-reduced-motion: reduce)").matches;
+  rig.style.opacity = tgMotion.checked ? ".4" : "1";
+  buildRig();
+  if(tgMotion.checked) document.querySelectorAll(".reveal").forEach(el=>el.classList.add("on"));
+}
+
+/* ══ reveals ══════════════════════════════════════════════ */
+const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("on");io.unobserve(en.target);}})},{rootMargin:"0px 0px -8% 0px"});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+document.getElementById("yr").textContent=new Date().getFullYear();
+
+/* failsafe — if anything ever collapses the document, drop the overlay
+   layer and force content visible rather than serving a black screen. */
+addEventListener("load",()=>{
+  setTimeout(()=>{
+    const h=document.body.getBoundingClientRect().height;
+    if(h<400){
+      const r=document.getElementById("rig"); if(r) r.style.display="none";
+      document.querySelectorAll("main,section,header,footer,.wrap")
+        .forEach(el=>{el.style.opacity="1";el.style.visibility="visible";el.style.display="";});
+      document.querySelectorAll(".reveal").forEach(el=>el.classList.add("on"));
+      document.documentElement.classList.remove("js");
+    }
+  },600);
+});
+</script>
+</body>
+</html>
+<!-- ADHDAKOTA OS LABZ · BUILD v3.1 · END OF FILE -->
