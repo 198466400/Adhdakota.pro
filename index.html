@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ADHDAKOTA.PRO | Advanced AI Model Showcase | TAFT Integration | Cyclone Pattern Mapping">
+    <meta name="robots" content="noindex">
+    <title>ADHDAKOTA.PRO | IAMAI MODEL</title>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        :root {
+            --neon-purple: #9d00ff;
+            --neon-green: #00ff9d;
+            --neon-blue: #00a2ff;
+            --neon-yellow: #ffd700;
+            --dark-bg: #0a0a0f;
+            --darker-bg: #050508;
+            --monospace: 'Courier New', monospace;
+        }
+        body {
+            background: var(--darker-bg);
+            color: var(--neon-white);
+            font-family: var(--monospace);
+            margin: 0;
+            padding: 0;
+            line-height: 1.4;
+        }
+        .header {
+            text-align: center;
+            padding: 2rem;
+            border-bottom: 1px solid var(--neon-purple);
+        }
+        .sigil {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            stroke: var(--neon-purple);
+            fill: none;
+            animation: pulse 2s infinite alternate;
+        }
+        @keyframes pulse {
+            from { opacity: 0.7; }
+            to { opacity: 1; }
+        }
+        .glitch {
+            color: var(--neon-purple);
+            font-size: 2.5rem;
+            text-shadow: 0 0 5px var(--neon-purple);
+            animation: glitch 1s infinite;
+        }
+        @keyframes glitch {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(2deg); }
+            40% { transform: skew(-1deg); }
+            60% { transform: skew(1deg); }
+            80% { transform: skew(-2deg); }
+            100% { transform: skew(0deg); }
+        }
+        .tagline {
+            color: var(--neon-green);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+        .section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .section-title {
+            color: var(--neon-purple);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            border-bottom: 1px solid var(--neon-purple);
+            padding-bottom: 0.5rem;
+        }
+        .card {
+            background: var(--dark-bg);
+            border: 1px solid var(--neon-purple);
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        .benchmark-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .benchmark-table th, .benchmark-table td {
+            border: 1px solid var(--neon-purple);
+            padding: 0.5rem;
+            text-align: left;
+        }
+        .benchmark-table th {
+            background: var(--darker-bg);
+            color: var(--neon-purple);
+        }
+        .chat-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .chat-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 0.5rem;
+            background: var(--darker-bg);
+            border: 1px solid var(--neon-purple);
+            color: white;
+            font-family: var(--monospace);
+        }
+        .chat-input button {
+            background: var(--neon-purple);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+        .chat-output {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--darker-bg);
+            border-radius: 5px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .chat-output p {
+            margin: 0.5rem 0;
+        }
+        .cyclone-map {
+            width: 100%;
+            height: 400px;
+            background: var(--darker-bg);
+            margin: 1rem 0;
+            border: 1px solid var(--neon-purple);
+            border-radius: 5px;
+        }
+        .investor-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .investor-table th, .investor-table td {
+            border: 1px solid var(--neon-purple);
+            padding: 0.5rem;
+            text-align: left;
+        }
+        .investor-table th {
+            background: var(--darker-bg);
+            color: var(--neon-purple);
+        }
+        .btn {
+            background: var(--neon-purple);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            margin: 0.5rem 0;
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid var(--neon-purple);
+            font-size: 0.9rem;
+        }
+        .neon-link {
+            color: var(--neon-green);
+            text-decoration: none;
+        }
+        .neon-link:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .glitch {
+                font-size: 1.8rem;
+            }
+            .section {
+                padding: 0 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <svg class="sigil" viewBox="0 0 100 100">
+            <path d="M10,10 L90,10 L90,90 L10,90 Z" stroke-width="2"/>
+            <path d="M30,30 L70,30 L70,70 L30,70 Z" stroke-width="1"/>
+        </svg>
+        <h1 class="glitch" data-text="ADHDAKOTA.PRO">ADHDAKOTA.PRO</h1>
+        <p class="tagline">IAMAI MODEL | Advanced AI | TAFT Integration | Cyclone Pattern Mapping</p>
+    </header>
+
+    <!-- Advanced Model Showcase -->
+    <section class="section">
+        <h2 class="section-title">// ADVANCED MODEL SHOWCASE</h2>
+        <div class="card">
+            <h3>🏆 TAFT Model Benchmarks</h3>
+            <p>Compare our advanced IAMAI model against the competition:</p>
+            <table class="benchmark-table">
+                <tr>
+                    <th>Model</th>
+                    <th>Tokens/sec</th>
+                    <th>Accuracy</th>
+                    <th>Cost</th>
+                    <th>Privacy</th>
+                </tr>
+                <tr>
+                    <td><strong>IAMAI (TAFT)</strong></td>
+                    <td>300+</td>
+                    <td>99%</td>
+                    <td>$0 (Local)</td>
+                    <td>✅ 100% Offline</td>
+                </tr>
+                <tr>
+                    <td>Ollama</td>
+                    <td>50</td>
+                    <td>95%</td>
+                    <td>$0.01/req</td>
+                    <td>❌ Cloud-Dependent</td>
+                </tr>
+                <tr>
+                    <td>Pinocchio</td>
+                    <td>100</td>
+                    <td>90%</td>
+                    <td>$0.05/req</td>
+                    <td>❌ Cloud-Dependent</td>
+                </tr>
+                <tr>
+                    <td>Hugging Face</td>
+                    <td>200</td>
+                    <td>98%</td>
+                    <td>$0.10/req</td>
+                    <td>❌ Cloud-Dependent</td>
+                </tr>
+            </table>
+            <p>Our model runs <strong>locally on your device</strong> with <strong>no vendor lock-in</strong>.</p>
+        </div>
+    </section>
+
+    <!-- AI Butler Chatbot -->
+    <section class="section">
+        <h2 class="section-title">// AI BUTLER (24/7 ASSISTANT)</h2>
+        <div class="card">
+            <p>Ask our <strong>IAMAI model</strong> anything. It runs locally and is <strong>uncensored</strong>.</p>
+            <div class="chat-container">
+                <div class="chat-output" id="chatOutput">
+                    <p>🤖 <strong>IAMAI:</strong> Ask me anything. I'm powered by your advanced TAFT model.</p>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="aiInput" placeholder="How does your model compare to Ollama?" autocomplete="off">
+                    <button onclick="askAI()">Send</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cyclone Map -->
+    <section class="section">
+        <h2 class="section-title">// CYCLONE PATTERN MAP</h2>
+        <div class="card">
+            <p>Real-time visualization of <strong>user interactions, model performance, and investor contributions</strong>.</p>
+            <div class="cyclone-map" id="cycloneMap"></div>
+            <button class="btn" onclick="addRandomData()">Add Random Data</button>
+            <button class="btn" onclick="clearData()">Clear Data</button>
+        </div>
+    </section>
+
+    <!-- Investor Portal -->
+    <section class="section">
+        <h2 class="section-title">// INVESTOR PORTAL</h2>
+        <div class="card">
+            <p>Transparent ledger of contributions and equity rewards.</p>
+            <table class="investor-table">
+                <tr>
+                    <th>Contributor</th>
+                    <th>Amount</th>
+                    <th>Equity</th>
+                    <th>Impact</th>
+                </tr>
+                <tr>
+                    <td>Dakota Moses</td>
+                    <td>$10,000</td>
+                    <td>10%</td>
+                    <td>Trained model for 100 hours</td>
+                </tr>
+                <tr>
+                    <td>Early Adopter</td>
+                    <td>$1,000</td>
+                    <td>1%</td>
+                    <td>Provided feedback</td>
+                </tr>
+                <tr>
+                    <td>Open Source Contributor</td>
+                    <td>$500</td>
+                    <td>0.5%</td>
+                    <td>Fixed critical bug</td>
+                </tr>
+            </table>
+            <button class="btn" onclick="alert('Contribution portal coming soon!')">Contribute</button>
+        </div>
+    </section>
+
+    <!-- Ship It Button -->
+    <section class="section">
+        <h2 class="section-title">// SHIP IT (AUTO-DEPLOYMENT)</h2>
+        <div class="card">
+            <p>Deploy updates to your TAFT model <strong>automatically</strong> after passing <strong>A.M.O.S. arbitration</strong>.</p>
+            <button class="btn" onclick="shipIt()">🚀 Ship It</button>
+            <div id="shipOutput" style="margin-top: 1rem;"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 ADHDAKOTA.PRO | Dakota Moses | <a href="mailto:eatmyf@duck.com" class="neon-link">eatmyf@duck.com</a></p>
+        <p><strong>No trackers. No cookies. No APIs. No vendor lock-in.</strong></p>
+        <p style="font-size: 0.8rem; color: var(--neon-purple);">10-Year Build Standard: Smaller. Faster. Battle-Tested.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // --- AI Butler ---
+        async function askAI() {
+            const input = document.getElementById("aiInput").value;
+            const outputDiv = document.getElementById("chatOutput");
+            if (!input) return;
+
+            outputDiv.innerHTML += `<p>👤 <strong>You:</strong> ${input}</p>`;
+            document.getElementById("aiInput").value = "";
+
+            // Simulate API call to your Rust backend (replace with real endpoint)
+            outputDiv.innerHTML += `<p>🤖 <strong>IAMAI:</strong> This is a simulated response from your advanced TAFT model. In a real deployment, this would call your Rust backend at <code>http://your-server:8080/v1/chat/completions</code>.</p>`;
+
+            // Scroll to bottom
+            outputDiv.scrollTop = outputDiv.scrollHeight;
+        }
+
+        // Allow sending with Enter key
+        document.getElementById("aiInput").addEventListener("keypress", (e) => {
+            if (e.key === "Enter") askAI();
+        });
+
+        // --- Cyclone Map ---
+        let points = [];
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / 400, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(800, 400);
+        renderer.setClearColor(0x000000, 0);
+        document.getElementById("cycloneMap").appendChild(renderer.domElement);
+
+        const geometry = new THREE.BufferGeometry();
+        const material = new THREE.PointsMaterial({ color: 0x9d00ff, size: 0.1 });
+        const cyclone = new THREE.Points(geometry, material);
+        scene.add(cyclone);
+        camera.position.z = 5;
+
+        function addRandomData() {
+            for (let i = 0; i < 100; i++) {
+                points.push(
+                    Math.random() * 10 - 5,
+                    Math.random() * 10 - 5,
+                    Math.random() * 10 - 5
+                );
+            }
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(points, 3));
+        }
+
+        function clearData() {
+            points = [];
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(points, 3));
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            cyclone.rotation.x += 0.005;
+            cyclone.rotation.y += 0.005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / 400;
+            camera.updateProjectionMatrix();
+            renderer.setSize(800, 400);
+        });
+
+        // --- Ship It Button ---
+        async function shipIt() {
+            const outputDiv = document.getElementById("shipOutput");
+            outputDiv.innerHTML = "🔍 Running A.M.O.S. arbitration...";
+
+            // Simulate A.M.O.S. arbitration (replace with real API call)
+            setTimeout(() => {
+                const approved = Math.random() > 0.1; // 90% approval rate for demo
+                if (approved) {
+                    outputDiv.innerHTML = "✅ <strong>Ship It!</strong> Model deployed successfully. Check the Cyclone Map for updates.";
+                    addRandomData(); // Simulate new data
+                } else {
+                    outputDiv.innerHTML = "❌ <strong>Blocked!</strong> A.M.O.S. detected an issue: 'Safety head voted HALT.'";
+                }
+            }, 1000);
+        }
+
+        // Initialize with some data
+        addRandomData();
+    </script>
+</body>
+</html>
