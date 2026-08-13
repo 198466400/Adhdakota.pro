@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADHDAKOTA | Answer the Questions</title>
+  <style>
+    /* Oily Black Background + Noise Texture */
+    body {
+      background: #050505;
+      color: #ffffff;
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Neon Wiring Overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.15) 0%, transparent 30%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Noise Texture */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuOCIgbnVtT2N0YXZlcz0iNCIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZSkiIG9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=');
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Neon Text Glow */
+    .neon-text {
+      text-shadow:
+        0 0 5px #00ffff,
+        0 0 10px #00ffff,
+        0 0 20px #00ffff;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    /* Container */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 4rem 0;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Question Form */
+    .question-form {
+      background: rgba(10, 10, 10, 0.8);
+      border: 1px solid #00ffff;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 10px #00ffff;
+    }
+
+    .question-form h2 {
+      color: #00ffff;
+      margin-bottom: 1rem;
+    }
+
+    .question-form textarea {
+      width: 100%;
+      min-height: 150px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid #00ffff;
+      color: #ffffff;
+      font-family: 'Courier New', monospace;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      resize: vertical;
+    }
+
+    .question-form textarea::placeholder {
+      color: #00ffff;
+      opacity: 0.7;
+    }
+
+    .question-form textarea:focus {
+      outline: none;
+      border-color: #ff00ff;
+      box-shadow: 0 0 10px #ff00ff;
+    }
+
+    /* Submit Button */
+    .submit-button {
+      background: transparent;
+      border: 2px solid #00ffff;
+      color: #00ffff;
+      padding: 1rem 2rem;
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00ffff;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .submit-button:hover {
+      background: #00ffff;
+      color: #000000;
+      box-shadow: 0 0 20px #00ffff;
+    }
+
+    /* Questions List */
+    .questions-list {
+      margin-top: 2rem;
+    }
+
+    .question-item {
+      background: rgba(10, 10, 10, 0.8);
+      border: 1px solid #ff00ff;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 10px #ff00ff;
+    }
+
+    .question-item h3 {
+      color: #ff00ff;
+      margin-bottom: 0.5rem;
+    }
+
+    .question-item p {
+      margin: 0.5rem 0;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #00ffff;
+      margin-top: 4rem;
+    }
+
+    footer a {
+      color: #00ffff;
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+
+    footer a:hover {
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    /* Neon Wiring SVG */
+    .neon-wiring {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .neon-wiring svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .neon-wiring path {
+      stroke-width: 1.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      animation: pulse 3s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .container {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Neon Wiring SVG -->
+  <div class="neon-wiring">
+    <svg width="100%" height="100%" preserveAspectRatio="none">
+      <path d="M10,10 L50,100 L100,20 L200,80 L300,30 L400,100 L500,40 L600,90 L700,10 L800,70" stroke="#00ffff" />
+      <path d="M20,150 L100,200 L150,180 L250,220 L350,170 L450,210 L550,190 L650,230" stroke="#ff00ff" />
+      <path d="M50,300 L120,350 L200,320 L280,380 L350,310 L420,360 L500,300" stroke="#ffff00" />
+    </svg>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <section class="hero">
+      <h1 class="neon-text">ANSWER THE QUESTIONS</h1>
+      <p>Help Dakota refine the <strong>Operational Readiness</strong> framework. Your input is <strong>free</strong> and <strong>anonymous</strong>.</p>
+    </section>
+
+    <!-- Question Form -->
+    <div class="question-form">
+      <h2 class="neon-text">1. Human-in-the-Loop Authority</h2>
+      <p>At what point does human authority resume when automation is allowed to act? Where does its authority stop?</p>
+      <textarea id="answer1" placeholder="Your answer..."></textarea>
+
+      <h2 class="neon-text">2. Operational Readiness Gaps</h2>
+      <p>Where do you see gaps in the current Operational Readiness framework? What’s missing?</p>
+      <textarea id="answer2" placeholder="Your answer..."></textarea>
+
+      <h2 class="neon-text">3. Implementation Challenges</h2>
+      <p>What are the biggest challenges you’ve faced when implementing these systems?</p>
+      <textarea id="answer3" placeholder="Your answer..."></textarea>
+
+      <button class="submit-button" onclick="submitAnswers()">SUBMIT ANSWERS</button>
+    </div>
+
+    <!-- Thank You Message (Hidden by Default) -->
+    <div id="thank-you" style="display: none; text-align: center; padding: 2rem; background: rgba(10, 10, 10, 0.8); border: 1px solid #00ffff; margin-top: 2rem;">
+      <h2 class="neon-text">THANK YOU</h2>
+      <p>Your answers have been recorded. Dakota will review them and may reach out for follow-up.</p>
+      <p><a href="#" class="submit-button" onclick="window.location.reload()">ANSWER AGAIN</a></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 ADHDAKOTA OS LABZ. All responses are anonymous and free.</p>
+  </footer>
+
+  <script>
+    // Submit Answers
+    function submitAnswers() {
+      const answer1 = document.getElementById('answer1').value;
+      const answer2 = document.getElementById('answer2').value;
+      const answer3 = document.getElementById('answer3').value;
+
+      if (!answer1 || !answer2 || !answer3) {
+        alert('Please answer all questions.');
+        return;
+      }
+
+      // Here, you could send the answers to a backend or save them locally.
+      // For now, we'll just hide the form and show a thank-you message.
+      document.querySelector('.question-form').style.display = 'none';
+      document.getElementById('thank-you').style.display = 'block';
+
+      // Log answers to console (for demo purposes)
+      console.log('Answers:', { answer1, answer2, answer3 });
+
+      // In a real implementation, you would send the data to a server or Google Sheets.
+      // Example using fetch (if you have a backend):
+      /*
+      fetch('YOUR_BACKEND_ENDPOINT', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ answer1, answer2, answer3 })
+      });
+      */
+    }
+
+    // Auto-save answers to localStorage (optional)
+    document.getElementById('answer1').addEventListener('input', (e) => {
+      localStorage.setItem('answer1', e.target.value);
+    });
+    document.getElementById('answer2').addEventListener('input', (e) => {
+      localStorage.setItem('answer2', e.target.value);
+    });
+    document.getElementById('answer3').addEventListener('input', (e) => {
+      localStorage.setItem('answer3', e.target.value);
+    });
+
+    // Load saved answers (optional)
+    window.addEventListener('load', () => {
+      document.getElementById('answer1').value = localStorage.getItem('answer1') || '';
+      document.getElementById('answer2').value = localStorage.getItem('answer2') || '';
+      document.getElementById('answer3').value = localStorage.getItem('answer3') || '';
+    });
+  </script>
+</body>
+</html>
