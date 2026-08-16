@@ -3,318 +3,573 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ADHDAKOTA | Answer the Questions</title>
+  <title>MIRROR | codedkota.com</title>
+  <meta name="description" content="MIRROR — self-reflection engine with tiers, polarized models, rules and products.">
   <style>
-    /* Oily Black Background + Noise Texture */
+    :root {
+      --bg: #050505;
+      --panel: rgba(10,10,10,0.85);
+      --cyan: #00ffff;
+      --magenta: #ff00ff;
+      --yellow: #ffff00;
+      --text: #ffffff;
+      --muted: #9aa0a6;
+    }
+    * { box-sizing: border-box; }
     body {
-      background: #050505;
-      color: #ffffff;
+      background: var(--bg);
+      color: var(--text);
       font-family: 'Courier New', monospace;
       margin: 0;
       padding: 0;
       line-height: 1.6;
       overflow-x: hidden;
       position: relative;
+      min-height: 100vh;
     }
-
-    /* Neon Wiring Overlay */
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background:
-        radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.15) 0%, transparent 30%),
-        radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.15) 0%, transparent 30%);
+        radial-gradient(circle at 10% 20%, rgba(0,255,255,0.12) 0%, transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(255,0,255,0.12) 0%, transparent 30%);
       pointer-events: none;
-      z-index: -1;
+      z-index: 0;
     }
-
-    /* Noise Texture */
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuOCIgbnVtT2N0YXZlcz0iNCIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZSkiIG9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=');
-      opacity: 0.05;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* Neon Text Glow */
     .neon-text {
-      text-shadow:
-        0 0 5px #00ffff,
-        0 0 10px #00ffff,
-        0 0 20px #00ffff;
-      color: #ffffff;
+      text-shadow: 0 0 5px var(--cyan), 0 0 10px var(--cyan), 0 0 20px var(--cyan);
+      color: var(--text);
       font-weight: bold;
     }
-
-    /* Container */
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding: 4rem 0;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
+    .container { max-width: 900px; margin: 0 auto; padding: 2rem; position: relative; z-index: 1; }
+    nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
       margin-bottom: 2rem;
+      border-bottom: 1px solid var(--cyan);
+      padding-bottom: 1rem;
     }
-
-    /* Question Form */
-    .question-form {
-      background: rgba(10, 10, 10, 0.8);
-      border: 1px solid #00ffff;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 0 10px #00ffff;
-    }
-
-    .question-form h2 {
-      color: #00ffff;
-      margin-bottom: 1rem;
-    }
-
-    .question-form textarea {
-      width: 100%;
-      min-height: 150px;
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid #00ffff;
-      color: #ffffff;
-      font-family: 'Courier New', monospace;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      resize: vertical;
-    }
-
-    .question-form textarea::placeholder {
-      color: #00ffff;
-      opacity: 0.7;
-    }
-
-    .question-form textarea:focus {
-      outline: none;
-      border-color: #ff00ff;
-      box-shadow: 0 0 10px #ff00ff;
-    }
-
-    /* Submit Button */
-    .submit-button {
+    nav button {
       background: transparent;
-      border: 2px solid #00ffff;
-      color: #00ffff;
-      padding: 1rem 2rem;
-      font-family: 'Courier New', monospace;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      padding: 0.5rem 1rem;
+      font-family: inherit;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    nav button:hover, nav button.active { background: var(--cyan); color: #000; box-shadow: 0 0 12px var(--cyan); }
+    .hero { text-align: center; padding: 3rem 0 2rem; }
+    .hero h1 { font-size: 2.5rem; margin: 0 0 1rem; line-height: 1.2; }
+    .hero p { font-size: 1.1rem; color: var(--muted); margin: 0 0 0.5rem; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--cyan);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 12px rgba(0,255,255,0.4);
+    }
+    .panel h2 { color: var(--cyan); margin-top: 0; }
+    input, textarea, select {
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid var(--cyan);
+      color: var(--text);
+      font-family: inherit;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border-radius: 0;
+    }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: var(--magenta); box-shadow: 0 0 10px var(--magenta); }
+    textarea { min-height: 120px; resize: vertical; }
+    .btn {
+      background: transparent;
+      border: 2px solid var(--cyan);
+      color: var(--cyan);
+      padding: 0.75rem 1.5rem;
+      font-family: inherit;
       font-size: 1rem;
       cursor: pointer;
-      box-shadow: 0 0 10px #00ffff;
+      box-shadow: 0 0 10px var(--cyan);
       transition: all 0.3s;
       text-decoration: none;
       display: inline-block;
+      margin: 0.25rem;
     }
-
-    .submit-button:hover {
-      background: #00ffff;
-      color: #000000;
-      box-shadow: 0 0 20px #00ffff;
-    }
-
-    /* Questions List */
-    .questions-list {
-      margin-top: 2rem;
-    }
-
-    .question-item {
-      background: rgba(10, 10, 10, 0.8);
-      border: 1px solid #ff00ff;
+    .btn:hover { background: var(--cyan); color: #000; box-shadow: 0 0 20px var(--cyan); }
+    .btn.magenta { border-color: var(--magenta); color: var(--magenta); box-shadow: 0 0 10px var(--magenta); }
+    .btn.magenta:hover { background: var(--magenta); color: #000; box-shadow: 0 0 20px var(--magenta); }
+    .btn.yellow { border-color: var(--yellow); color: var(--yellow); box-shadow: 0 0 10px var(--yellow); }
+    .btn.yellow:hover { background: var(--yellow); color: #000; box-shadow: 0 0 20px var(--yellow); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+    .card {
+      background: rgba(10,10,10,0.8);
+      border: 1px solid var(--magenta);
       padding: 1.5rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 0 10px #ff00ff;
+      box-shadow: 0 0 10px rgba(255,0,255,0.4);
     }
-
-    .question-item h3 {
-      color: #ff00ff;
-      margin-bottom: 0.5rem;
+    .card h3 { color: var(--magenta); margin: 0 0 0.5rem; }
+    .card .price { font-size: 1.6rem; color: var(--cyan); margin: 0.5rem 0; }
+    .card ul { padding-left: 1.2rem; color: var(--muted); }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      font-size: 0.75rem;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      margin-left: 0.5rem;
     }
-
-    .question-item p {
-      margin: 0.5rem 0;
+    .badge.cyan { border-color: var(--cyan); color: var(--cyan); }
+    .response-box {
+      background: rgba(0,0,0,0.6);
+      border: 1px solid var(--cyan);
+      padding: 1.25rem;
+      margin-top: 1rem;
+      white-space: pre-wrap;
     }
-
-    /* Footer */
-    footer {
+    .response-box.architect { border-color: var(--cyan); box-shadow: 0 0 8px rgba(0,255,255,0.4); }
+    .response-box.visioneer { border-color: var(--magenta); box-shadow: 0 0 8px rgba(255,0,255,0.4); }
+    .response-box.solaris { border-color: var(--yellow); box-shadow: 0 0 8px rgba(255,255,0,0.4); }
+    .response-box.lunaris { border-color: #b388ff; box-shadow: 0 0 8px rgba(179,136,255,0.4); }
+    .violations { color: #ff5555; font-size: 0.85rem; margin-top: 0.5rem; }
+    .violations span { color: #88ff88; }
+    .tier-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .tier-bar button { background: transparent; border: 1px solid var(--muted); color: var(--muted); padding: 0.3rem 0.8rem; cursor: pointer; font-family: inherit; }
+    .tier-bar button.active { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+    .model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
+    .model-card {
+      background: rgba(0,0,0,0.5);
+      border: 1px solid var(--muted);
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
       text-align: center;
-      padding: 2rem;
-      border-top: 1px solid #00ffff;
-      margin-top: 4rem;
     }
-
-    footer a {
-      color: #00ffff;
-      text-decoration: none;
-      margin: 0 1rem;
+    .model-card:hover { border-color: var(--cyan); }
+    .model-card.selected { border-color: var(--cyan); box-shadow: 0 0 10px var(--cyan); background: rgba(0,255,255,0.05); }
+    .model-card .icon { font-size: 1.6rem; }
+    .model-card .name { color: var(--cyan); font-weight: bold; }
+    .model-card .opp { color: var(--muted); font-size: 0.75rem; }
+    .journal-entry, .log-entry {
+      background: rgba(0,0,0,0.5);
+      border-left: 3px solid var(--cyan);
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
     }
-
-    footer a:hover {
-      text-shadow: 0 0 10px #00ffff;
-    }
-
-    /* Neon Wiring SVG */
-    .neon-wiring {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .neon-wiring svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    .neon-wiring path {
-      stroke-width: 1.5;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      animation: pulse 3s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-      .container {
-        padding: 1rem;
-      }
-    }
+    .journal-entry .meta, .log-entry .meta { color: var(--muted); font-size: 0.75rem; margin-bottom: 0.3rem; }
+    .empty { color: var(--muted); font-style: italic; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid var(--cyan); margin-top: 4rem; color: var(--muted); }
+    footer a { color: var(--cyan); text-decoration: none; }
+    .hidden { display: none; }
+    .quota { color: var(--yellow); font-size: 0.85rem; }
+    .small { font-size: 0.8rem; color: var(--muted); }
+    @media (max-width: 600px) { .hero h1 { font-size: 1.8rem; } .container { padding: 1rem; } }
   </style>
 </head>
 <body>
-  <!-- Neon Wiring SVG -->
-  <div class="neon-wiring">
-    <svg width="100%" height="100%" preserveAspectRatio="none">
-      <path d="M10,10 L50,100 L100,20 L200,80 L300,30 L400,100 L500,40 L600,90 L700,10 L800,70" stroke="#00ffff" />
-      <path d="M20,150 L100,200 L150,180 L250,220 L350,170 L450,210 L550,190 L650,230" stroke="#ff00ff" />
-      <path d="M50,300 L120,350 L200,320 L280,380 L350,310 L420,360 L500,300" stroke="#ffff00" />
-    </svg>
-  </div>
-
-  <!-- Main Content -->
   <div class="container">
     <section class="hero">
-      <h1 class="neon-text">ANSWER THE QUESTIONS</h1>
-      <p>Help Dakota refine the <strong>Operational Readiness</strong> framework. Your input is <strong>free</strong> and <strong>anonymous</strong>.</p>
+      <h1 class="neon-text">🪞 MIRROR</h1>
+      <p>The self-reflection engine. Tiers, Polarized Models, Rules &amp; Products.</p>
+      <p class="small">codedkota.com · adhdakota.pro</p>
     </section>
 
-    <!-- Question Form -->
-    <div class="question-form">
-      <h2 class="neon-text">1. Human-in-the-Loop Authority</h2>
-      <p>At what point does human authority resume when automation is allowed to act? Where does its authority stop?</p>
-      <textarea id="answer1" placeholder="Your answer..."></textarea>
+    <nav>
+      <button data-view="mirror" class="active">🪞 Mirror</button>
+      <button data-view="products">📦 Products</button>
+      <button data-view="journal">📓 Journal</button>
+      <button data-view="logs">📜 Logs</button>
+    </nav>
 
-      <h2 class="neon-text">2. Operational Readiness Gaps</h2>
-      <p>Where do you see gaps in the current Operational Readiness framework? What’s missing?</p>
-      <textarea id="answer2" placeholder="Your answer..."></textarea>
-
-      <h2 class="neon-text">3. Implementation Challenges</h2>
-      <p>What are the biggest challenges you’ve faced when implementing these systems?</p>
-      <textarea id="answer3" placeholder="Your answer..."></textarea>
-
-      <button class="submit-button" onclick="submitAnswers()">SUBMIT ANSWERS</button>
+    <!-- Tier status bar -->
+    <div class="panel" id="tier-panel">
+      <h2>Account</h2>
+      <div class="tier-bar" id="tier-bar"></div>
+      <div id="account-info"></div>
     </div>
 
-    <!-- Thank You Message (Hidden by Default) -->
-    <div id="thank-you" style="display: none; text-align: center; padding: 2rem; background: rgba(10, 10, 10, 0.8); border: 1px solid #00ffff; margin-top: 2rem;">
-      <h2 class="neon-text">THANK YOU</h2>
-      <p>Your answers have been recorded. Dakota will review them and may reach out for follow-up.</p>
-      <p><a href="#" class="submit-button" onclick="window.location.reload()">ANSWER AGAIN</a></p>
+    <!-- MIRROR VIEW -->
+    <div id="view-mirror" class="view">
+      <div class="panel">
+        <h2>Ask the Mirror</h2>
+        <p class="small">Select a model and ask your question. Rule violations are checked live.</p>
+        <div class="model-grid" id="model-grid"></div>
+        <textarea id="question" placeholder="Type your question..."></textarea>
+        <div>
+          <button class="btn" onclick="askMirror()">REFLECT</button>
+          <button class="btn magenta" onclick="polarDebate()">POLAR DEBATE</button>
+          <span class="quota" id="quota-display"></span>
+        </div>
+        <div id="response-area"></div>
+      </div>
     </div>
+
+    <!-- PRODUCTS VIEW -->
+    <div id="view-products" class="view hidden">
+      <div class="panel">
+        <h2>Products &amp; Tiers</h2>
+        <p class="small">Mirror is free. Upgrade for more models, polarized debate, and higher quotas.</p>
+        <div class="grid" id="products-grid"></div>
+      </div>
+    </div>
+
+    <!-- JOURNAL VIEW -->
+    <div id="view-journal" class="view hidden">
+      <div class="panel">
+        <h2>Journal</h2>
+        <p class="small">Your questions and AI analyses are stored locally on this device.</p>
+        <button class="btn magenta" onclick="clearJournal()">CLEAR JOURNAL</button>
+        <div id="journal-list" style="margin-top:1rem;"></div>
+      </div>
+    </div>
+
+    <!-- LOGS VIEW -->
+    <div id="view-logs" class="view hidden">
+      <div class="panel">
+        <h2>Model Logs</h2>
+        <p class="small">Every model response and its rule violations, logged for transparency.</p>
+        <button class="btn magenta" onclick="clearLogs()">CLEAR LOGS</button>
+        <div id="logs-list" style="margin-top:1rem;"></div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2026 ADHDAKOTA OS LABZ · codedkota.com · <a href="https://adhdakota.pro">adhdakota.pro</a></p>
+    </footer>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2026 ADHDAKOTA OS LABZ. All responses are anonymous and free.</p>
-  </footer>
-
   <script>
-    // Submit Answers
-    function submitAnswers() {
-      const answer1 = document.getElementById('answer1').value;
-      const answer2 = document.getElementById('answer2').value;
-      const answer3 = document.getElementById('answer3').value;
+  // ===== DATA (mirrors the Flask app definitions) =====
+  const TIERS = {
+    free:       { label: "Free",       price: 0,   quota_per_day: 5,    models: ["Mirror"], features: ["Basic Q&A", "Journal"] },
+    pro:        { label: "Pro",        price: 19,  quota_per_day: 50,   models: ["Mirror","Architect","Visioneer","Tactician"], features: ["Trinity Debate", "Full Journal", "3 Models"] },
+    premium:    { label: "Premium",    price: 49,  quota_per_day: 200,  models: ["Mirror","Architect","Visioneer","Tactician","Solaris","Lunaris"], features: ["Duality Pool", "All Models", "Polarized Copies"] },
+    enterprise:{ label: "Enterprise", price: 199, quota_per_day: 9999, models: ["All"], features: ["Unlimited", "Custom Models", "API Access", "Priority Support"] }
+  };
 
-      if (!answer1 || !answer2 || !answer3) {
-        alert('Please answer all questions.');
-        return;
-      }
+  const MODELS = {
+    Mirror:    { icon:"🪞", description:"The basic self-reflection engine.", polar_opposite:null,       tier_required:"free",    style:"neutral, reflective",
+      rules:[{rule:"must_contain_action",description:"Response must include a concrete action."},{rule:"max_words_50",description:"Under 50 words."}] },
+    Architect: { icon:"🧠", description:"Structured, logical, planning-oriented.", polar_opposite:"Visioneer", tier_required:"pro", style:"systematic, analytical",
+      rules:[{rule:"must_contain_steps",description:"List at least 3 numbered steps."},{rule:"no_emotion",description:"No emotional language."}] },
+    Visioneer: { icon:"👁️", description:"Creative, intuitive, edge-case thinker.", polar_opposite:"Architect", tier_required:"pro", style:"lateral, imaginative",
+      rules:[{rule:"must_contain_question",description:"End with a question."},{rule:"must_be_under_100_words",description:"Under 100 words."}] },
+    Tactician: { icon:"⚔️", description:"Action-oriented, execution-focused.", polar_opposite:"Visioneer", tier_required:"pro", style:"pragmatic, urgent",
+      rules:[{rule:"must_contain_tomorrow",description:"Include the word 'tomorrow'."},{rule:"no_excuses",description:"No 'but', 'however', or 'maybe'."}] },
+    Solaris:   { icon:"☀️", description:"Rational, ordered, light-bringer.", polar_opposite:"Lunaris", tier_required:"premium", style:"strict, illuminating",
+      rules:[{rule:"must_contain_logic",description:"Use logical connectors (therefore, thus, hence)."},{rule:"must_be_exact",description:"Exactly 3 sentences."}] },
+    Lunaris:   { icon:"🌙", description:"Intuitive, chaotic, shadow-whisperer.", polar_opposite:"Solaris", tier_required:"premium", style:"fluid, mysterious",
+      rules:[{rule:"must_contain_metaphor",description:"Contain a metaphor."},{rule:"must_end_with_ellipsis",description:"End with '...'."}] }
+  };
 
-      // Here, you could send the answers to a backend or save them locally.
-      // For now, we'll just hide the form and show a thank-you message.
-      document.querySelector('.question-form').style.display = 'none';
-      document.getElementById('thank-you').style.display = 'block';
+  // ===== STATE (localStorage persistence, mirrors SQLite) =====
+  const LS = {
+    get user()    { return JSON.parse(localStorage.getItem("mirror_user")    || "null"); },
+    set user(v)   { localStorage.setItem("mirror_user", JSON.stringify(v)); },
+    get journal() { return JSON.parse(localStorage.getItem("mirror_journal") || "[]"); },
+    set journal(v){ localStorage.setItem("mirror_journal", JSON.stringify(v)); },
+    get logs()    { return JSON.parse(localStorage.getItem("mirror_logs")    || "[]"); },
+    set logs(v)   { localStorage.setItem("mirror_logs", JSON.stringify(v)); },
+    get usage()   { return JSON.parse(localStorage.getItem("mirror_usage")   || "0"); },
+    set usage(v)  { localStorage.setItem("mirror_usage", JSON.stringify(v)); },
+    get usageDate() { return localStorage.getItem("mirror_usage_date"); },
+    set usageDate(v) { localStorage.setItem("mirror_usage_date", v); }
+  };
 
-      // Log answers to console (for demo purposes)
-      console.log('Answers:', { answer1, answer2, answer3 });
+  function defaultUser() {
+    return { id: uid(), email:"", name:"Guest", tier:"free", created_at: now(), training_level:0, vision:"", api_key:"", usage_today:0, last_usage_reset:now() };
+  }
+  function uid()  { return 'u_' + Math.random().toString(36).slice(2,11); }
+  function now()  { return new Date().toISOString(); }
 
-      // In a real implementation, you would send the data to a server or Google Sheets.
-      // Example using fetch (if you have a backend):
-      /*
-      fetch('YOUR_BACKEND_ENDPOINT', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ answer1, answer2, answer3 })
-      });
-      */
+  // reset daily quota
+  function resetQuotaIfNewDay() {
+    const today = new Date().toISOString().slice(0,10);
+    if (LS.usageDate !== today) {
+      LS.usage = 0;
+      LS.usageDate = today;
+      const u = LS.user; if (u) { u.usage_today = 0; u.last_usage_reset = now(); LS.user = u; }
     }
+  }
 
-    // Auto-save answers to localStorage (optional)
-    document.getElementById('answer1').addEventListener('input', (e) => {
-      localStorage.setItem('answer1', e.target.value);
-    });
-    document.getElementById('answer2').addEventListener('input', (e) => {
-      localStorage.setItem('answer2', e.target.value);
-    });
-    document.getElementById('answer3').addEventListener('input', (e) => {
-      localStorage.setItem('answer3', e.target.value);
-    });
+  // ===== MODEL ACCESS =====
+  function getModelsForTier(tier) {
+    if (tier === "enterprise") return Object.keys(MODELS);
+    const order = ["free","pro","premium"];
+    const tIdx = order.indexOf(tier);
+    return Object.keys(MODELS).filter(m => order.indexOf(MODELS[m].tier_required) <= tIdx);
+  }
+  function getPolarOpposite(modelName){ return MODELS[modelName] ? MODELS[modelName].polar_opposite : null; }
 
-    // Load saved answers (optional)
-    window.addEventListener('load', () => {
-      document.getElementById('answer1').value = localStorage.getItem('answer1') || '';
-      document.getElementById('answer2').value = localStorage.getItem('answer2') || '';
-      document.getElementById('answer3').value = localStorage.getItem('answer3') || '';
+  // ===== RULE ENGINE =====
+  function applyRule(ruleName, text) {
+    const t = text.toLowerCase();
+    switch (ruleName) {
+      case "must_contain_action":      return ["do","act","take","execute","start","send","call","write"].some(w => t.includes(w));
+      case "max_words_50":             return text.split(/\s+/).filter(Boolean).length <= 50;
+      case "must_contain_steps":       return (text.match(/\d+\./g) || []).length >= 3;
+      case "no_emotion":               return !["happy","sad","angry","excited","worried","afraid","love","hate"].some(w => t.includes(w));
+      case "must_contain_question":    return text.includes("?");
+      case "must_be_under_100_words":  return text.split(/\s+/).filter(Boolean).length < 100;
+      case "must_contain_tomorrow":    return t.includes("tomorrow");
+      case "no_excuses":               return !["but","however","maybe","perhaps","might"].some(w => t.includes(w));
+      case "must_contain_logic":       return ["therefore","thus","hence","consequently","accordingly"].some(w => t.includes(w));
+      case "must_be_exact":            return text.split('.').filter(s => s.trim()).length === 3;
+      case "must_contain_metaphor":    return ["like a","as a","is the","are the"].some(w => t.includes(w));
+      case "must_end_with_ellipsis":   return text.trim().endsWith("...");
+      default: return true;
+    }
+  }
+  function checkRules(modelName, response) {
+    const model = MODELS[modelName];
+    if (!model) return ["Model not found"];
+    const violations = [];
+    for (const r of (model.rules || [])) {
+      if (!applyRule(r.rule, response)) violations.push(r.description);
+    }
+    return violations;
+  }
+
+  // ===== RESPONSE GENERATORS =====
+  function generate(modelName, question) {
+    const q = question || "your question";
+    const responses = {
+      Mirror:    `🪞 Look at ${q}. The answer is within you. Take one step today.`,
+      Architect: `1. Define the goal for '${q}'. 2. List resources. 3. Schedule daily actions. 4. Review weekly. Follow this.`,
+      Visioneer: `What if '${q}' is actually an opportunity? Consider the opposite perspective. What would that reveal?`,
+      Tactician: `Tomorrow, wake up and execute the first action toward '${q}'. No excuses. Do it.`,
+      Solaris:   `Thus, '${q}' requires precise analysis. Therefore, map all variables. Hence, act with clarity.`,
+      Lunaris:   `The shadow of '${q}' holds a hidden truth, like a river beneath ice. Trust the current, even when unseen...`
+    };
+    return responses[modelName] || `Model ${modelName} considers '${q}'. Act accordingly.`;
+  }
+
+  // ===== UI RENDERING =====
+  let selectedModel = "Mirror";
+
+  function renderTierBar() {
+    const bar = document.getElementById("tier-bar");
+    const u = LS.user || defaultUser();
+    bar.innerHTML = "";
+    Object.keys(TIERS).forEach(t => {
+      const b = document.createElement("button");
+      b.textContent = TIERS[t].label + (TIERS[t].price ? " ($"+TIERS[t].price+")" : " ($0)");
+      if (u.tier === t) b.classList.add("active");
+      b.onclick = () => { setTier(t); };
+      bar.appendChild(b);
     });
+  }
+
+  function setTier(t) {
+    const u = LS.user || defaultUser();
+    u.tier = t;
+    LS.user = u;
+    selectedModel = "Mirror";
+    renderAll();
+  }
+
+  function renderAccountInfo() {
+    const u = LS.user || defaultUser();
+    const tier = TIERS[u.tier];
+    const remaining = Math.max(0, tier.quota_per_day - (LS.usage||0));
+    document.getElementById("account-info").innerHTML = `
+      <p>Name: <strong>${u.name}</strong> · Tier: <strong style="color:var(--cyan)">${tier.label}</strong></p>
+      <p class="quota">Quota today: ${LS.usage||0} / ${tier.quota_per_day} — ${remaining} remaining</p>
+    `;
+    document.getElementById("quota-display").textContent = `${LS.usage||0}/${tier.quota_per_day} used today`;
+  }
+
+  function renderModelGrid() {
+    const u = LS.user || defaultUser();
+    const allowed = getModelsForTier(u.tier);
+    const grid = document.getElementById("model-grid");
+    grid.innerHTML = "";
+    allowed.forEach(m => {
+      const data = MODELS[m];
+      const card = document.createElement("div");
+      card.className = "model-card" + (m === selectedModel ? " selected" : "");
+      const opp = data.polar_opposite ? `<div class="opp">⇄ ${data.polar_opposite}</div>` : "";
+      card.innerHTML = `<div class="icon">${data.icon}</div><div class="name">${m}</div>${opp}`;
+      card.onclick = () => { selectedModel = m; renderModelGrid(); };
+      grid.appendChild(card);
+    });
+  }
+
+  function renderProducts() {
+    const grid = document.getElementById("products-grid");
+    grid.innerHTML = "";
+    Object.keys(TIERS).forEach(t => {
+      const tier = TIERS[t];
+      const card = document.createElement("div");
+      card.className = "card";
+      const feats = tier.features.map(f => `<li>${f}</li>`).join("");
+      const models = t === "enterprise" ? "All models" : tier.models.join(", ");
+      card.innerHTML = `
+        <h3>${tier.label}</h3>
+        <div class="price">$${tier.price}<span class="small">/mo</span></div>
+        <p class="small">Models: ${models}</p>
+        <p class="small">Quota: ${tier.quota_per_day}/day</p>
+        <ul>${feats}</ul>
+        <button class="btn" onclick="setTier('${t}')">SELECT ${tier.label.toUpperCase()}</button>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function renderJournal() {
+    const list = document.getElementById("journal-list");
+    const entries = LS.journal;
+    if (!entries.length) { list.innerHTML = `<p class="empty">No journal entries yet.</p>`; return; }
+    list.innerHTML = entries.slice().reverse().map(e => `
+      <div class="journal-entry">
+        <div class="meta">${e.model_used} · ${new Date(e.timestamp).toLocaleString()}</div>
+        <div><strong>Q:</strong> ${esc(e.question)}</div>
+        <div><strong>A:</strong> ${esc(e.ai_analysis)}</div>
+      </div>
+    `).join("");
+  }
+
+  function renderLogs() {
+    const list = document.getElementById("logs-list");
+    const logs = LS.logs;
+    if (!logs.length) { list.innerHTML = `<p class="empty">No model logs yet.</p>`; return; }
+    list.innerHTML = logs.slice().reverse().map(l => {
+      const v = l.rule_violations && l.rule_violations.length
+        ? l.rule_violations.map(x => `✗ ${esc(x)}`).join("<br>")
+        : `<span>✓ All rules passed</span>`;
+      return `
+        <div class="log-entry">
+          <div class="meta">${l.model_name} · ${new Date(l.timestamp).toLocaleString()}</div>
+          <div>${esc(l.response)}</div>
+          <div class="violations">${v}</div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  // ===== ACTIONS =====
+  function logModel(modelName, response, violations) {
+    const logs = LS.logs;
+    logs.push({ id: uid(), user_id:(LS.user||{}).id, model_name:modelName, response, rule_violations:violations, timestamp:now() });
+    if (logs.length > 200) logs.shift();
+    LS.logs = logs;
+  }
+
+  function addJournal(question, analysis, modelUsed) {
+    const j = LS.journal;
+    j.push({ id: uid(), user_id:(LS.user||{}).id, question, ai_analysis:analysis, model_used:modelUsed, timestamp:now() });
+    if (j.length > 200) j.shift();
+    LS.journal = j;
+  }
+
+  function incrementUsage() {
+    LS.usage = (LS.usage||0) + 1;
+    const u = LS.user; if (u) { u.usage_today = (u.usage_today||0)+1; LS.user = u; }
+  }
+
+  function canUse() {
+    const u = LS.user || defaultUser();
+    const tier = TIERS[u.tier];
+    return (LS.usage||0) < tier.quota_per_day;
+  }
+
+  function askMirror() {
+    resetQuotaIfNewDay();
+    if (!canUse()) { alert("Daily quota reached. Upgrade your tier or wait until tomorrow."); return; }
+    const q = document.getElementById("question").value.trim();
+    if (!q) { alert("Type a question first."); return; }
+    const u = LS.user || defaultUser();
+    const allowed = getModelsForTier(u.tier);
+    if (!allowed.includes(selectedModel)) {
+      alert(`Your ${TIERS[u.tier].label} tier does not include ${selectedModel}.`);
+      return;
+    }
+    const response = generate(selectedModel, q);
+    const violations = checkRules(selectedModel, response);
+    incrementUsage();
+    logModel(selectedModel, response, violations);
+    addJournal(q, response, selectedModel);
+
+    const cls = selectedModel.toLowerCase();
+    const vHtml = violations.length
+      ? `<div class="violations">${violations.map(x => `✗ ${esc(x)}`).join("<br>")}</div>`
+      : `<div class="violations"><span>✓ All rules passed</span></div>`;
+    document.getElementById("response-area").innerHTML = `
+      <div class="response-box ${cls}"><strong>${MODELS[selectedModel].icon} ${selectedModel}</strong><br><br>${esc(response)}</div>
+      ${vHtml}
+    `;
+    renderAccountInfo();
+  }
+
+  function polarDebate() {
+    resetQuotaIfNewDay();
+    const u = LS.user || defaultUser();
+    const allowed = getModelsForTier(u.tier);
+    if (!allowed.includes("Architect")) { alert("Polar Debate requires Pro tier or higher."); return; }
+    if (!canUse()) { alert("Daily quota reached. Upgrade your tier or wait until tomorrow."); return; }
+    const q = document.getElementById("question").value.trim();
+    if (!q) { alert("Type a question first."); return; }
+    // pair: Architect vs Visioneer (or Solaris vs Lunaris for premium)
+    let pair;
+    if (allowed.includes("Solaris")) pair = ["Solaris","Lunaris"];
+    else pair = ["Architect","Visioneer"];
+
+    let html = "";
+    pair.forEach(modelName => {
+      const response = generate(modelName, q);
+      const violations = checkRules(modelName, response);
+      incrementUsage();
+      logModel(modelName, response, violations);
+      addJournal(q, response, modelName + " (debate)");
+      const cls = modelName.toLowerCase();
+      const vHtml = violations.length
+        ? `<div class="violations">${violations.map(x => `✗ ${esc(x)}`).join("<br>")}</div>`
+        : `<div class="violations"><span>✓ All rules passed</span></div>`;
+      html += `<div class="response-box ${cls}"><strong>${MODELS[modelName].icon} ${modelName}</strong> <span class="badge">polar ⇄ ${getPolarOpposite(modelName)||""}</span><br><br>${esc(response)}</div>${vHtml}`;
+    });
+    document.getElementById("response-area").innerHTML = `<h3 class="neon-text">POLAR DEBATE</h3>` + html;
+    renderAccountInfo();
+  }
+
+  function clearJournal() { if (confirm("Clear all journal entries?")) { LS.journal = []; renderJournal(); } }
+  function clearLogs()    { if (confirm("Clear all model logs?"))      { LS.logs = [];    renderLogs(); } }
+
+  // ===== NAVIGATION =====
+  document.querySelectorAll("nav button").forEach(b => {
+    b.onclick = () => {
+      document.querySelectorAll("nav button").forEach(x => x.classList.remove("active"));
+      b.classList.add("active");
+      document.querySelectorAll(".view").forEach(v => v.classList.add("hidden"));
+      document.getElementById("view-" + b.dataset.view).classList.remove("hidden");
+      if (b.dataset.view === "journal") renderJournal();
+      if (b.dataset.view === "logs") renderLogs();
+      if (b.dataset.view === "products") renderProducts();
+    };
+  });
+
+  function renderAll() {
+    renderTierBar();
+    renderAccountInfo();
+    renderModelGrid();
+    renderProducts();
+    renderJournal();
+    renderLogs();
+  }
+
+  // ===== INIT =====
+  (function init(){
+    if (!LS.user) LS.user = defaultUser();
+    resetQuotaIfNewDay();
+    renderAll();
+  })();
   </script>
 </body>
 </html>
